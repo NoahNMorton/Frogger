@@ -8,9 +8,9 @@ public class FroggerGame {
     int status, lives, startLifeTime;
     boolean reachedMiddle;
     Frog player;
-    LogLane[] logLanes;
-    CarLane[] carLanes;
-    LilyPad[] lilyPadses; //i'm leaving it like that. It's required. #smeagle
+    //LogLane[] logLanes;
+    //CarLane[] carLanes;
+    //LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
 
     public FroggerGame() {
         status = FroggerGame.PLAYING;
@@ -42,15 +42,18 @@ public class FroggerGame {
     }
 
     public LogLane[] getLogLanes() {
-        return logLanes;
+        //return logLanes;
+        return null;
     }
 
     public CarLane[] getCarLanes() {
-        return carLanes;
+        //return carLanes;
+        return null;
     }
 
     public LilyPad[] getLilyPadses() {
-        return lilyPadses;
+        //return lilyPadses;
+        return null;
     }
 
     public int getTimeLeft() {

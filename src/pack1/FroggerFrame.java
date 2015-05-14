@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * @author othscs120
  *         Created on: 11/4/2014 , Time is :  1:28 PM
- *         Part of Project: MineSweeper
+ *         Part of Project: Frogger
  */
 
 public class FroggerFrame extends JFrame {

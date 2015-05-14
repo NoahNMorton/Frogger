@@ -19,7 +19,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     int framesPerSecond;
 
     public FroggerPanel() {
-        setSize(500, 500); //todo correct size
+        setSize(700, 640); //todo correct size
 
         Logger.logCodeMessage("Set size to " + getWidth() + "," + getHeight());
         reset();
@@ -97,7 +97,12 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void paint(Graphics g) {
-        //todo paint
+        g.setColor(Color.green);
+        g.fillRect(0, 0, getWidth(), getHeight()); //fill the background
+        g.setColor(Color.BLUE);
+        g.fillRect(0, 80, getWidth(), getHeight() / 2);
+        g.fillRect(60, 30, 70, 50);
+
     }
 
     void update() {
