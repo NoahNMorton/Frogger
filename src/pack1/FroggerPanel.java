@@ -77,6 +77,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     public void keyPressed(KeyEvent e) {
         //unused
+
     }
 
     @Override
@@ -99,9 +100,40 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     public void paint(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(0, 0, getWidth(), getHeight()); //fill the background
-        g.setColor(Color.BLUE);
-        g.fillRect(0, 80, getWidth(), getHeight() / 2);
+        g.setColor(Color.BLUE); //fill water on upper part of map
+        g.fillRect(0, 80, getWidth(), 160);
+        //small water inlets for lilypads
         g.fillRect(60, 30, 70, 50);
+        g.fillRect(240, 30, 70, 50);
+        g.fillRect(420, 30, 70, 50);
+        g.fillRect(600, 30, 70, 50);
+        //white lines of the road
+        g.setColor(Color.white);
+        g.drawLine(0, 300, getWidth(), 300);
+        g.drawLine(0, 500, getWidth(), 500);
+        //road
+        g.setColor(Color.GRAY);
+        g.fillRect(0, 301, getWidth(), 199);
+        //bottom black bar
+        g.setColor(Color.BLACK);
+        g.fillRect(0, getHeight() - 60, getWidth(), getHeight());
+        //yellow lines on road
+        g.setColor(Color.yellow);
+        for (int y = 341; y < 489; y += 39) {
+            for (int x = 10; x < getWidth() - 10; x += 90) {
+                g.fillRect(x, y, 60, 4);
+            }
+        }
+        //lilypads
+        g.drawImage(lilyPad, 75, 41, null);
+        g.drawImage(lilyPad, 254, 41, null);
+        g.drawImage(lilyPad, 435, 41, null);
+        g.drawImage(lilyPad, 615, 41, null);
+        //text
+        g.setColor(Color.RED);
+        //g.setFont(new Font("Arial"));
+        g.drawString("Lives:", 10, getHeight() - 20);
+
 
     }
 
