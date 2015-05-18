@@ -19,7 +19,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     int framesPerSecond;
 
     public FroggerPanel() {
-        setSize(700, 640); //todo correct size
+        setSize(700, 640);
 
         Logger.logCodeMessage("Set size to " + getWidth() + "," + getHeight());
         reset();
@@ -131,10 +131,39 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.drawImage(lilyPad, 615, 41, null);
         //text
         g.setColor(Color.RED);
-        //g.setFont(new Font("Arial"));
-        g.drawString("Lives:", 10, getHeight() - 20);
+        g.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));                                                      // gr8 b8 m8 i r8 8/8...-ign "too much water"
+        g.drawString("Livers:", 10, getHeight() - 15);                                                             //<r4d!7 70 cV||3n ph@l3^ 1337 so leet
+        g.drawString("Time Left:", 300, getHeight() - 15);                                                             // 3 s00ky 5 m3 | 420 69 eyy limo
 
+        //time left max is 80
+        int i = game.getTimeLeft();
+        if (i >= 80) {
+            g.setColor(Color.green);
+            g.fillRect(500, getHeight() - 40, 170, 20);
 
+        } else if (i >= 70) {
+            g.setColor(Color.green);
+            g.fillRect(500, getHeight() - 40, 150, 20);
+        } else if (i >= 60) {
+            g.setColor(Color.green);
+            g.fillRect(500, getHeight() - 40, 130, 20);
+        } else if (i >= 50) {
+            g.setColor(Color.orange);
+            g.fillRect(500, getHeight() - 40, 110, 20);
+        } else if (i >= 40) {
+            g.setColor(Color.orange);
+            g.fillRect(500, getHeight() - 40, 90, 20);
+        } else if (i >= 30) {
+            g.setColor(Color.orange);
+            g.fillRect(500, getHeight() - 40, 70, 20);
+        } else if (i >= 20) {
+            g.setColor(Color.red);
+            g.fillRect(500, getHeight() - 40, 50, 20);
+        } else if (i >= 10) {
+            g.setColor(Color.red);
+            g.fillRect(500, getHeight() - 40, 40, 20);
+        }
+        Logger.logCodeMessage("Filled static graphics.");
     }
 
     void update() {
@@ -144,6 +173,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     public void addNotify() {
         super.addNotify();
         requestFocus();
+        Logger.logCodeMessage("Requested focus on the window.");
     }
 
     void reset() {
