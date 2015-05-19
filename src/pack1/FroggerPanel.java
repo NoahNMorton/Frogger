@@ -79,8 +79,19 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyPressed(KeyEvent e) {
-        //unused
-
+        switch (e.getKeyChar()) {
+            case 'w':
+                game.getPlayer().setY(game.getPlayer().getY() + 40);
+                break;
+            case 's':
+                game.getPlayer().setY(game.getPlayer().getY() - 40);
+                break;
+            case 'a':
+                game.getPlayer().setX(game.getPlayer().getX() - 40);
+                break;
+            case 'd':
+                game.getPlayer().setX(game.getPlayer().getX() + 40);
+        }
     }
 
     @Override
@@ -151,6 +162,10 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
         Logger.logCodeMessage("Filled static graphics.");
+
+        //draw frog ----------------
+        g.drawImage(frogUp, game.getPlayer().getX(), game.getPlayer().getY(), null);
+
     }
 
     void update() {
