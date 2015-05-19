@@ -7,6 +7,8 @@ public class Frog {
     int x, y, direction;
 
     public Frog(int x, int y) {
+        this.x = x;
+        this.y = y;
         //todo sets starting pos
     }
 

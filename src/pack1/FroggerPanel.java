@@ -14,7 +14,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     BufferedImage car1_Left, car1_Right, car2_Left, car2_Right, limo_Left, limo_Right, semi_Left, semi_Right, frogUp, frogDown,
             frogLeft, frogRight, hsTurtle, hmTurtle, hlTurtle, sTurtle, mTurtle, lTurtle, sLog, mLog, lLog, lilyPad, frogLife;
     FroggerGame game;
-    BufferedImage buffer;
+    //BufferedImage buffer;
     int updatesPerSecond;
     int framesPerSecond;
 
@@ -27,6 +27,8 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
         try {
             pThread = new Thread(this);
+            pThread.start();
+            Logger.logCodeMessage("Successfully set up thread.");
         } catch (Exception e) {
             System.err.println("Error creating thread.");
             e.printStackTrace();
@@ -71,6 +73,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     }
 
+    @Deprecated
     public void keyReleased(KeyEvent e) {
         //unused
     }
@@ -83,7 +86,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Override
     public void run() {
         while (true) {
-            paint(this.getGraphics());
+            repaint();
             try {
                 Thread.sleep(50); //todo correct times per second?
             } catch (Exception e) {
@@ -145,9 +148,8 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         else
             g.setColor(Color.RED);
 
-        int width = (i * 2) + 10; //calculate width of timer bar
-        g.fillRect(500, getHeight() - 40, width, 20); //draw timer based on time left
-
+        g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
+        g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
         Logger.logCodeMessage("Filled static graphics.");
     }
 
