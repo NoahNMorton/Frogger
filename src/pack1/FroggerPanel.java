@@ -102,67 +102,52 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(0, 0, getWidth(), getHeight()); //fill the background
         g.setColor(Color.BLUE); //fill water on upper part of map
         g.fillRect(0, 80, getWidth(), 160);
-        //small water inlets for lilypads
+        //small water inlets for lilypads----------
         g.fillRect(60, 30, 70, 50);
         g.fillRect(240, 30, 70, 50);
         g.fillRect(420, 30, 70, 50);
         g.fillRect(600, 30, 70, 50);
-        //white lines of the road
+        //white lines of the road-------------------
         g.setColor(Color.white);
         g.drawLine(0, 300, getWidth(), 300);
         g.drawLine(0, 500, getWidth(), 500);
-        //road
+        //road--------------------------------------
         g.setColor(Color.GRAY);
         g.fillRect(0, 301, getWidth(), 199);
-        //bottom black bar
+        //bottom black bar----------------------
         g.setColor(Color.BLACK);
         g.fillRect(0, getHeight() - 60, getWidth(), getHeight());
-        //yellow lines on road
+        //yellow lines on road----------------
         g.setColor(Color.yellow);
         for (int y = 341; y < 489; y += 39) {
             for (int x = 10; x < getWidth() - 10; x += 90) {
                 g.fillRect(x, y, 60, 4);
             }
         }
-        //lilypads
+        //lilypads------------------------------
         g.drawImage(lilyPad, 75, 41, null);
         g.drawImage(lilyPad, 254, 41, null);
         g.drawImage(lilyPad, 435, 41, null);
         g.drawImage(lilyPad, 615, 41, null);
-        //text
+        //text----------------------------------
         g.setColor(Color.RED);
         g.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));                                                      // gr8 b8 m8 i r8 8/8...-ign "too much water"
         g.drawString("Livers:", 10, getHeight() - 15);                                                             //<r4d!7 70 cV||3n ph@l3^ 1337 so leet
         g.drawString("Time Left:", 300, getHeight() - 15);                                                             // 3 s00ky 5 m3 | 420 69 eyy limo
 
-        //time left max is 80
+        //time left----------------
         int i = game.getTimeLeft();
-        if (i >= 80) {
-            g.setColor(Color.green);
-            g.fillRect(500, getHeight() - 40, 170, 20);
 
-        } else if (i >= 70) {
+        if (i >= 60) //change colour of bar based on time left
             g.setColor(Color.green);
-            g.fillRect(500, getHeight() - 40, 150, 20);
-        } else if (i >= 60) {
-            g.setColor(Color.green);
-            g.fillRect(500, getHeight() - 40, 130, 20);
-        } else if (i >= 50) {
+        else if (i >= 40)
             g.setColor(Color.orange);
-            g.fillRect(500, getHeight() - 40, 110, 20);
-        } else if (i >= 40) {
-            g.setColor(Color.orange);
-            g.fillRect(500, getHeight() - 40, 90, 20);
-        } else if (i >= 30) {
-            g.setColor(Color.orange);
-            g.fillRect(500, getHeight() - 40, 70, 20);
-        } else if (i >= 20) {
-            g.setColor(Color.red);
-            g.fillRect(500, getHeight() - 40, 50, 20);
-        } else if (i >= 10) {
-            g.setColor(Color.red);
-            g.fillRect(500, getHeight() - 40, 40, 20);
-        }
+        else
+            g.setColor(Color.RED);
+
+        int width = (i * 2) + 10; //calculate width of timer bar
+        g.fillRect(500, getHeight() - 40, width, 20); //draw timer based on time left
+
         Logger.logCodeMessage("Filled static graphics.");
     }
 
