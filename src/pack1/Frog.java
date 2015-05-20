@@ -4,12 +4,13 @@ package pack1;
 public class Frog {
 
     public static final int LEFT = 0, RIGHT = 1, DOWN = 2, UP = 3, WIDTH = 22;
-    int x, y, direction;
+    private int x, y, direction;
 
     public Frog(int x, int y) {
+        direction = UP;
         this.x = x;
         this.y = y;
-        //todo sets starting pos
+
     }
 
     public int getY() {

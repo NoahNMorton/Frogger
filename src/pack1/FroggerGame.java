@@ -16,7 +16,8 @@ public class FroggerGame {
         status = FroggerGame.PLAYING;
         reachedMiddle = false;
         lives = 3;
-        player = new Frog(300, 600);
+        player = new Frog(320, 500);
+
 
         /*
         todo Sets the lifeTimer

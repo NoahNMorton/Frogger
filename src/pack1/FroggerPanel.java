@@ -18,6 +18,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     int updatesPerSecond;
     int framesPerSecond;
 
+
     public FroggerPanel() {
         setSize(700, 640);
 
@@ -78,20 +79,9 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         //unused
     }
 
+    @Deprecated
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'w':
-                game.getPlayer().setY(game.getPlayer().getY() + 40);
-                break;
-            case 's':
-                game.getPlayer().setY(game.getPlayer().getY() - 40);
-                break;
-            case 'a':
-                game.getPlayer().setX(game.getPlayer().getX() - 40);
-                break;
-            case 'd':
-                game.getPlayer().setX(game.getPlayer().getX() + 40);
-        }
+        //unused
     }
 
     @Override
@@ -108,19 +98,40 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyTyped(KeyEvent e) {
-        //todo new game, and player controls
+        switch (e.getKeyChar()) {
+            case 'w':
+                if ((game.getPlayer().getY() - 40) > 30)
+                    game.getPlayer().setY(game.getPlayer().getY() - 40);
+                game.getPlayer().setDirection(Frog.UP);
+                break;
+            case 's':
+                if ((game.getPlayer().getY() + 40) < getHeight() - 100)
+                    game.getPlayer().setY(game.getPlayer().getY() + 40);
+                game.getPlayer().setDirection(Frog.DOWN);
+                break;
+            case 'a':
+                if ((game.getPlayer().getX() - 30) > 0)
+                    game.getPlayer().setX(game.getPlayer().getX() - 40);
+                game.getPlayer().setDirection(Frog.LEFT);
+                break;
+            case 'd':
+                if ((game.getPlayer().getX() + 40) < getWidth() - 30)
+                    game.getPlayer().setX(game.getPlayer().getX() + 40);
+                game.getPlayer().setDirection(Frog.RIGHT);
+                break;
+        }
     }
 
     public void paint(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(0, 0, getWidth(), getHeight()); //fill the background
         g.setColor(Color.BLUE); //fill water on upper part of map
-        g.fillRect(0, 80, getWidth(), 160);
+        g.fillRect(0, 65, getWidth(), 190);
         //small water inlets for lilypads----------
-        g.fillRect(60, 30, 70, 50);
-        g.fillRect(240, 30, 70, 50);
-        g.fillRect(420, 30, 70, 50);
-        g.fillRect(600, 30, 70, 50);
+        g.fillRect(60, 20, 70, 50);
+        g.fillRect(240, 20, 70, 50);
+        g.fillRect(420, 20, 70, 50);
+        g.fillRect(600, 20, 70, 50);
         //white lines of the road-------------------
         g.setColor(Color.white);
         g.drawLine(0, 300, getWidth(), 300);
@@ -130,7 +141,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(0, 301, getWidth(), 199);
         //bottom black bar----------------------
         g.setColor(Color.BLACK);
-        g.fillRect(0, getHeight() - 60, getWidth(), getHeight());
+        g.fillRect(0, getHeight() - 100, getWidth(), getHeight());
         //yellow lines on road----------------
         g.setColor(Color.yellow);
         for (int y = 341; y < 489; y += 39) {
@@ -139,7 +150,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //lilypads------------------------------
-        g.drawImage(lilyPad, 75, 41, null);
+        g.drawImage(lilyPad, 75, 41, null); //todo refactor into for loop, raise up
         g.drawImage(lilyPad, 254, 41, null);
         g.drawImage(lilyPad, 435, 41, null);
         g.drawImage(lilyPad, 615, 41, null);
@@ -161,11 +172,22 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
-        Logger.logCodeMessage("Filled static graphics.");
 
         //draw frog ----------------
-        g.drawImage(frogUp, game.getPlayer().getX(), game.getPlayer().getY(), null);
-
+        switch (game.getPlayer().getDirection()) { //draw frog based on direction
+            case Frog.UP:
+                g.drawImage(frogUp, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                break;
+            case Frog.DOWN:
+                g.drawImage(frogDown, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                break;
+            case Frog.LEFT:
+                g.drawImage(frogLeft, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                break;
+            case Frog.RIGHT:
+                g.drawImage(frogRight, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                break;
+        }
     }
 
     void update() {
