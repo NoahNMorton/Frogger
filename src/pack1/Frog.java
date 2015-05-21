@@ -10,7 +10,6 @@ public class Frog {
         direction = UP;
         this.x = x;
         this.y = y;
-
     }
 
     public int getY() {
@@ -40,6 +39,5 @@ public class Frog {
     public void setDirection(int direction) {
         this.direction = direction;
     }
-
 
 }

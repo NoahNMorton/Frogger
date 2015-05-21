@@ -7,8 +7,19 @@ public class Log extends LaneItem {
         super(speed, type, direction, x);
     }
 
+    /**
+     * Gets the width of the log.
+     *
+     * @return int based on the length of the log.
+     */
     public int getWidth() {
-        //returns width based on type.
+
+        if (type == SHORT)
+            return 80;
+        if (type == MEDIUM)
+            return 120;
+        if (type == LONG)
+            return 200;
         return 0;
     }
 }

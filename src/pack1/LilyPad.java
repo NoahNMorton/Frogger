@@ -10,6 +10,7 @@ public class LilyPad {
     public LilyPad(int x, int y) {
         this.x = x;
         this.y = y;
+        frog = false;
     }
 
     public static int getWidth() {

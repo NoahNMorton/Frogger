@@ -17,6 +17,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     //BufferedImage buffer;
     int updatesPerSecond;
     int framesPerSecond;
+    LilyPad lp1, lp2, lp3, lp4;
 
 
     public FroggerPanel() {
@@ -70,7 +71,10 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             System.exit(-1); //if loading fails, end the program.
         }
         addKeyListener(this);
-
+        lp1 = new LilyPad(75, 30);
+        lp2 = new LilyPad(254, 30);
+        lp3 = new LilyPad(433, 30);
+        lp4 = new LilyPad(612, 30);
 
     }
 
@@ -86,6 +90,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void run() {
+        //noinspection InfiniteLoopStatement
         while (true) {
             repaint();
             try {
@@ -96,7 +101,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
     }
-
     public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
             case 'w':
@@ -150,10 +154,9 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //lilypads------------------------------
-        g.drawImage(lilyPad, 75, 41, null); //todo refactor into for loop, raise up
-        g.drawImage(lilyPad, 254, 41, null);
-        g.drawImage(lilyPad, 435, 41, null);
-        g.drawImage(lilyPad, 615, 41, null);
+        for (int i = 75; i <= 615; i += 179)
+            g.drawImage(lilyPad, i, 30, null);
+
         //text----------------------------------
         g.setColor(Color.RED);
         g.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));                                                      // gr8 b8 m8 i r8 8/8...-ign "too much water"
@@ -162,7 +165,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
         //time left----------------
         int i = game.getTimeLeft();
-
         if (i >= 60) //change colour of bar based on time left
             g.setColor(Color.green);
         else if (i >= 40)
@@ -201,7 +203,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     void reset() {
-        this.game = new FroggerGame(); //todo check
+        this.game = new FroggerGame();
     }
 
 

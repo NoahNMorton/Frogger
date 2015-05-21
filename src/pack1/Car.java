@@ -9,8 +9,20 @@ public class Car extends LaneItem {
         super(speed, type, direction, x);
     }
 
+    /**
+     * Gets length based on type of car
+     *
+     * @return int of the length based on car type.
+     */
     public int getWidth() {
-        //returns width based on type.
+        if (type == CAR_1)
+            return 40;
+        if (type == CAR_2)
+            return 40;
+        if (type == SEMI)
+            return 120;
+        if (type == LIMO)
+            return 80;
         return 0;
     }
 }
