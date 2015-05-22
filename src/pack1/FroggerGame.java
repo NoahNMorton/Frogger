@@ -8,20 +8,29 @@ public class FroggerGame {
     int status, lives, startLifeTime;
     boolean reachedMiddle;
     Frog player;
-    //LogLane[] logLanes;
-    //CarLane[] carLanes;
-    //LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
+    LogLane[] logLanes;
+    CarLane[] carLanes;
+    LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
 
     public FroggerGame() {
         status = FroggerGame.PLAYING;
         reachedMiddle = false;
         lives = 3;
         player = new Frog(320, 500);
+        lilyPadses = new LilyPad[4];
+        lilyPadses[0] = new LilyPad(75, 30);
+        lilyPadses[1] = new LilyPad(254, 30);
+        lilyPadses[2] = new LilyPad(433, 30);
+        lilyPadses[3] = new LilyPad(612, 30);
+
+        carLanes = new CarLane[1];
+        logLanes = new LogLane[1];
+
+
 
 
         /*
         todo Sets the lifeTimer
-        todo Puts the frog in the starting grass
         todo Creates all the lanes
         */
 
@@ -29,6 +38,9 @@ public class FroggerGame {
 
     void update() {
         //todo moves cars logs turtles, calls runChecks >help
+        carLanes[0].update();
+        logLanes[0].update();
+        runChecks();
     }
 
     public int getStatus() {
@@ -44,18 +56,18 @@ public class FroggerGame {
     }
 
     public LogLane[] getLogLanes() {
-        //return logLanes;
-        return null;
+        return logLanes;
+
     }
 
     public CarLane[] getCarLanes() {
-        //return carLanes;
-        return null;
+        return carLanes;
+
     }
 
     public LilyPad[] getLilyPadses() {
-        //return lilyPadses;
-        return null;
+        return lilyPadses;
+
     }
 
     public int getTimeLeft() {

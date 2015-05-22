@@ -17,7 +17,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     //BufferedImage buffer;
     int updatesPerSecond;
     int framesPerSecond;
-    LilyPad lp1, lp2, lp3, lp4;
 
 
     public FroggerPanel() {
@@ -71,10 +70,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             System.exit(-1); //if loading fails, end the program.
         }
         addKeyListener(this);
-        lp1 = new LilyPad(75, 30);
-        lp2 = new LilyPad(254, 30);
-        lp3 = new LilyPad(433, 30);
-        lp4 = new LilyPad(612, 30);
+
 
     }
 
@@ -86,6 +82,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Deprecated
     public void keyPressed(KeyEvent e) {
         //unused
+
     }
 
     @Override
@@ -101,6 +98,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
     }
+
     public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
             case 'w':
@@ -159,9 +157,9 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
         //text----------------------------------
         g.setColor(Color.RED);
-        g.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));                                                      // gr8 b8 m8 i r8 8/8...-ign "too much water"
-        g.drawString("Livers:", 10, getHeight() - 15);                                                             //<r4d!7 70 cV||3n ph@l3^ 1337 so leet
-        g.drawString("Time Left:", 300, getHeight() - 15);                                                             // 3 s00ky 5 m3 | 420 69 eyy limo
+        g.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
+        g.drawString("Livers:", 10, getHeight() - 15);
+        g.drawString("Time Left:", 300, getHeight() - 15);
 
         //time left----------------
         int i = game.getTimeLeft();

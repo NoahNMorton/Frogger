@@ -34,6 +34,8 @@ public class Lane {
     }
 
     void update() {
-        //todo moves all objects in lane
+        for (int i = 0; i < laneItems.size(); i++) {
+            laneItems.get(i).update();
+        }
     }
 }

@@ -35,6 +35,9 @@ public class LaneItem {
     }
 
     void update() {
-        //todo moves object based on speed and direction
+        if (direction == Lane.RIGHT)
+            setX(x + speed);
+        else if (direction == Lane.LEFT)
+            setX(x - speed);
     }
 }
