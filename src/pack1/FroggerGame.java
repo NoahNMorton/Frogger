@@ -23,9 +23,14 @@ public class FroggerGame {
         lilyPadses[2] = new LilyPad(433, 30);
         lilyPadses[3] = new LilyPad(612, 30);
 
-        carLanes = new CarLane[1];
+        carLanes = new CarLane[5];
         logLanes = new LogLane[1];
+        carLanes[0] = new CarLane(3, Lane.RIGHT, 300);
+        carLanes[1] = new CarLane(3, Lane.LEFT, 350);
+        carLanes[2] = new CarLane(3, Lane.LEFT, 400);
+        //todo finish making lanes
 
+        logLanes[0] = new LogLane(1, Lane.RIGHT, 200);
 
 
 
@@ -38,8 +43,10 @@ public class FroggerGame {
 
     void update() {
         //todo moves cars logs turtles, calls runChecks >help
-        carLanes[0].update();
-        logLanes[0].update();
+        for (int u = 0; u < carLanes.length; u++)
+            carLanes[u].update();
+        for (int y = 0; y < carLanes.length; y++)
+            logLanes[y].update();
         runChecks();
     }
 

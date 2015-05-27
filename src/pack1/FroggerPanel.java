@@ -16,7 +16,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     FroggerGame game;
     //BufferedImage buffer;
     int updatesPerSecond;
-    int framesPerSecond;
+    int framesPerSecond; //todo used?
 
 
     public FroggerPanel() {
@@ -71,7 +71,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         }
         addKeyListener(this);
 
-
     }
 
     @Deprecated
@@ -89,9 +88,10 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     public void run() {
         //noinspection InfiniteLoopStatement
         while (true) {
+            update();
             repaint();
             try {
-                Thread.sleep(50); //todo correct times per second?
+                Thread.sleep(35); //todo correct times per second?
             } catch (Exception e) {
                 System.err.println("Error Sleeping.");
                 Logger.logErrorMessage("Error Sleeping Thread.");
@@ -173,7 +173,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
-        //draw frog ----------------
+        //draw frog --------------------------
         switch (game.getPlayer().getDirection()) { //draw frog based on direction
             case Frog.UP:
                 g.drawImage(frogUp, game.getPlayer().getX(), game.getPlayer().getY(), null);
@@ -188,12 +188,28 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 g.drawImage(frogRight, game.getPlayer().getX(), game.getPlayer().getY(), null);
                 break;
         }
+        //MOVING OBJECTS ---------------------------------------
+        //cars ------------
+        for (CarLane cl : game.getCarLanes()) //all car lanes
+        {
+            for (int p = 0; p < cl.laneItems.size(); p++) //each car in that lane
+            {
+                if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.CAR_1) {
+                    g.drawImage(car1_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
+                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.CAR_1) {
+                    g.drawImage(car1_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
+                } else if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.CAR_2) {
+                    g.drawImage(car2_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
+                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.CAR_2) {
+                    g.drawImage(car1_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
+                }
+            }
+        }
     }
 
     void update() {
         game.update();
     }
-
     public void addNotify() {
         super.addNotify();
         requestFocus();
