@@ -17,21 +17,22 @@ public class FroggerGame {
         reachedMiddle = false;
         lives = 3;
         player = new Frog(320, 500);
+        //lilly pads------------------------
         lilyPadses = new LilyPad[4];
         lilyPadses[0] = new LilyPad(75, 30);
         lilyPadses[1] = new LilyPad(254, 30);
         lilyPadses[2] = new LilyPad(433, 30);
         lilyPadses[3] = new LilyPad(612, 30);
-
+        //log and car lanes -------------
         carLanes = new CarLane[5];
         logLanes = new LogLane[1];
         carLanes[0] = new CarLane(3, Lane.RIGHT, 300);
-        carLanes[1] = new CarLane(3, Lane.LEFT, 350);
-        carLanes[2] = new CarLane(3, Lane.LEFT, 400);
-        //todo finish making lanes
+        carLanes[1] = new CarLane(3, Lane.LEFT, 340);
+        carLanes[2] = new CarLane(3, Lane.RIGHT, 380);
+        carLanes[3] = new CarLane(3, Lane.LEFT, 420);
+        carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
 
         logLanes[0] = new LogLane(1, Lane.RIGHT, 200);
-
 
 
         /*
@@ -46,7 +47,7 @@ public class FroggerGame {
         for (int u = 0; u < carLanes.length; u++)
             carLanes[u].update();
         for (int y = 0; y < carLanes.length; y++)
-            logLanes[y].update();
+            //logLanes[y].update();
         runChecks();
     }
 
