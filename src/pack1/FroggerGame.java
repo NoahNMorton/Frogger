@@ -40,6 +40,8 @@ public class FroggerGame {
         todo Creates all the lanes
         */
 
+        for (int t = 0; t < 1000; t++) //calls update on all lanes before loading game
+            update();
     }
 
     void update() {
@@ -48,7 +50,7 @@ public class FroggerGame {
             carLanes[u].update();
         for (int y = 0; y < carLanes.length; y++)
             //logLanes[y].update();
-        runChecks();
+            runChecks();
     }
 
     public int getStatus() {

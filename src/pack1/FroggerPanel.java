@@ -218,6 +218,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     void update() {
         game.update();
     }
+
     public void addNotify() {
         super.addNotify();
         requestFocus();
