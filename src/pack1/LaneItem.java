@@ -40,7 +40,6 @@ public class LaneItem {
     }
 
     void update() {
-        //System.out.println("Moved the car.");
         if (direction == Lane.RIGHT)
             setX(x + speed);
         else if (direction == Lane.LEFT)
