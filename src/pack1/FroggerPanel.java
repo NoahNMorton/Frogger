@@ -16,8 +16,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     FroggerGame game;
     //BufferedImage buffer;
     int updatesPerSecond;
-    int framesPerSecond; //todo used?
-
 
     public FroggerPanel() {
         setSize(700, 640);
@@ -192,24 +190,24 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         //cars ------------
         for (CarLane cl : game.getCarLanes()) //all car lanes
         {
-            for (int p = 0; p < cl.laneItems.size(); p++) //each car in that lane
+            for (int p = 0; p < cl.froggerItems.size(); p++) //each car in that lane
             {
-                if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.CAR_1) {
-                    g.drawImage(car1_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.CAR_1) {
-                    g.drawImage(car1_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.CAR_2) {
-                    g.drawImage(car2_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.CAR_2) {
-                    g.drawImage(car1_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.LIMO) {
-                    g.drawImage(limo_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.LIMO) {
-                    g.drawImage(limo_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.LEFT && cl.laneItems.get(p).getType() == Car.SEMI) {
-                    g.drawImage(semi_Left, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
-                } else if (cl.laneItems.get(p).getDirection() == Lane.RIGHT && cl.laneItems.get(p).getType() == Car.SEMI) {
-                    g.drawImage(semi_Right, (int) cl.laneItems.get(p).getX(), (int) cl.laneItems.get(p).getY(), null);
+                if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.CAR_1) {
+                    g.drawImage(car1_Right, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.CAR_1) {
+                    g.drawImage(car1_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.CAR_2) {
+                    g.drawImage(car2_Right, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.CAR_2) {
+                    g.drawImage(car1_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.LIMO) {
+                    g.drawImage(limo_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.LIMO) {
+                    g.drawImage(limo_Right, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.SEMI) {
+                    g.drawImage(semi_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                } else if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.SEMI) {
+                    g.drawImage(semi_Right, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
                 }
             }
         }

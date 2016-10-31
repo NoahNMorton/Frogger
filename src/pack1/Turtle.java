@@ -1,7 +1,7 @@
 package pack1;
 
 
-public class Turtle extends LaneItem {
+public class Turtle extends FroggerItem {
     public static final int ONE_TURTLE = 0, TWO_TURTLE = 1, THREE_TURTLE = 2; //type
     public static final int ALWAYS_UP = 4, UP = 0, HALF_UP = 1, DOWN = 2, HALF_DOWN = 3; //mode
     int mode, timer;

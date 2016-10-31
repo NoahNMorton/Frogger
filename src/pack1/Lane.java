@@ -8,7 +8,7 @@ public class Lane {
     public static final int LEFT = 0, RIGHT = 1;
     int y, direction;
     double speed;
-    ArrayList<LaneItem> laneItems = new ArrayList<LaneItem>();
+    ArrayList<FroggerItem> froggerItems = new ArrayList<FroggerItem>();
 
 
     public Lane(double speed, int direction, int y) {
@@ -29,14 +29,14 @@ public class Lane {
         return speed;
     }
 
-    public ArrayList<LaneItem> getLaneItems() {
-        return laneItems;
+    public ArrayList<FroggerItem> getFroggerItems() {
+        return froggerItems;
     }
 
     void update() {
         //System.out.println("Moving all objects");
-        for (LaneItem laneItem : laneItems) {
-            laneItem.update();
+        for (FroggerItem froggerItem : froggerItems) {
+            froggerItem.update();
         }
     }
 }

@@ -1,6 +1,6 @@
 package pack1;
 
-public class Log extends LaneItem {
+public class Log extends FroggerItem {
     public static final int SHORT = 0, MEDIUM = 1, LONG = 2;
 
     public Log(double speed, int type, int direction, double x, double y) {

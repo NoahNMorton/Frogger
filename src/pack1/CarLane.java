@@ -25,30 +25,30 @@ public class CarLane extends Lane {
         }
         if (direction == RIGHT) {
             int location = -120 - (int) (Math.random() * 49) - length;
-            if (laneItems.size() == 0) {
-                laneItems.add(new Car(speed, (int) (Math.random() * 4), RIGHT, location, y));
+            if (froggerItems.size() == 0) {
+                froggerItems.add(new Car(speed, (int) (Math.random() * 4), RIGHT, location, y));
             }
-            for (int i = 0; i < laneItems.size(); i++) {
-                if (laneItems.get(i).getDirection() == Lane.LEFT && laneItems.get(i).getX() < -20) laneItems.remove(i);
-                if (laneItems.get(i).getDirection() == Lane.RIGHT && laneItems.get(i).getX() > 720) laneItems.remove(i);
+            for (int i = 0; i < froggerItems.size(); i++) {
+                if (froggerItems.get(i).getDirection() == Lane.LEFT && froggerItems.get(i).getX() < -20) froggerItems.remove(i);
+                if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720) froggerItems.remove(i);
 
             }
-            if ((int) laneItems.get(laneItems.size() - 1).getX() + laneItems.get(laneItems.size() - 1).getWidth() > 0) {
+            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() > 0) {
 
                 Car newCar = new Car(speed, carType, RIGHT, location, y);
                 newCar.setX(location - newCar.getWidth());
-                laneItems.add(newCar);
+                froggerItems.add(newCar);
             }
         } else if (direction == LEFT) {
             int location = 700 + (int) (Math.random() * 49) + length; //set location of car to spawn
-            if (laneItems.size() == 0) {
-                laneItems.add(new Car(speed, (int) (Math.random() * 4), LEFT, location, y));
+            if (froggerItems.size() == 0) {
+                froggerItems.add(new Car(speed, (int) (Math.random() * 4), LEFT, location, y));
             }
-            for (int i = 0; i < laneItems.size(); i++) {
-                if (laneItems.get(i).getDirection() == Lane.RIGHT && laneItems.get(i).getX() > 720) laneItems.remove(i);
+            for (int i = 0; i < froggerItems.size(); i++) {
+                if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720) froggerItems.remove(i);
             }
-            if ((int) laneItems.get(laneItems.size() - 1).getX() + laneItems.get(laneItems.size() - 1).getWidth() < 700) {
-                laneItems.add(new Car(speed, carType, LEFT, location, y));
+            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() < 700) {
+                froggerItems.add(new Car(speed, carType, LEFT, location, y));
             }
         }
     }

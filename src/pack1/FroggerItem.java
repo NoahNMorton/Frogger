@@ -1,13 +1,13 @@
 package pack1;
 
 
-public class LaneItem {
+public class FroggerItem {
 
     double speed, x, y;
     int direction;
     int type;
 
-    public LaneItem(double speed, int type, int direction, double x, double y) {
+    public FroggerItem(double speed, int type, int direction, double x, double y) {
         this.speed = speed;
         this.type = type;
         this.direction = direction;

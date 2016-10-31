@@ -48,9 +48,10 @@ public class FroggerGame {
         //todo moves cars logs turtles, calls runChecks >help
         for (int u = 0; u < carLanes.length; u++)
             carLanes[u].update();
-        for (int y = 0; y < carLanes.length; y++)
+        //for (int y = 0; y < carLanes.length; y++)
             //logLanes[y].update();
-            runChecks();
+
+        runChecks();
     }
 
     public int getStatus() {
