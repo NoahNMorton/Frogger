@@ -52,7 +52,7 @@ public class FroggerGame {
         for (int u = 0; u < carLanes.length; u++)
             carLanes[u].update();
         //for (int y = 0; y < carLanes.length; y++)
-            //logLanes[y].update();
+        //logLanes[y].update();
 
         runChecks();
     }

@@ -7,7 +7,7 @@ public class LilyPad extends FroggerItem {
     boolean frog;
 
     public LilyPad(double x, double y) {
-        super(0,0,0,x,y);
+        super(0, 0, 0, x, y);
     }
 
     public int getWidth() {
