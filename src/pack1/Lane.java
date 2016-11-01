@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Lane {
 
     public static final int LEFT = 0, RIGHT = 1;
-    int y, direction;
-    double speed;
-    ArrayList<FroggerItem> froggerItems = new ArrayList<FroggerItem>();
+    int direction;
+    double speed, y;
+    ArrayList<FroggerItem> froggerItems = new ArrayList<>();
 
 
     public Lane(double speed, int direction, int y) {
@@ -17,7 +17,7 @@ public class Lane {
         this.y = y;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 

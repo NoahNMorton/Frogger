@@ -1,11 +1,14 @@
 package pack1;
 
 
-public class FroggerItem {
+import java.awt.*;
 
+public abstract class FroggerItem {
+
+    private static final int LEFT = 2, RIGHT = 3;
     double speed, x, y;
-    int direction;
-    int type;
+    int direction, type;
+    private Rectangle rect = new Rectangle();
 
     public FroggerItem(double speed, int type, int direction, double x, double y) {
         this.speed = speed;
@@ -21,28 +24,49 @@ public class FroggerItem {
 
     public void setX(double x) {
         this.x = x;
+        updateRectangle();
     }
 
     public double getY() {
         return y;
     }
 
+    public void setY(double y) {
+        this.y = y;
+        updateRectangle();
+    }
+
     public int getDirection() {
         return direction;
     }
 
-    int getWidth() {
-        return 40;
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
     public int getType() {
         return type;
     }
 
+    public void updateRectangle() {
+        //todo update rectangle
+    }
+
+    public Rectangle getRect() {
+        return rect;
+    }
+
+    public void setRect(Rectangle rect) {
+        this.rect = rect;
+    }
+
+    public abstract int getWidth();
+
     void update() {
         if (direction == Lane.RIGHT)
             setX(x + speed);
         else if (direction == Lane.LEFT)
             setX(x - speed);
+        updateRectangle();
     }
 }

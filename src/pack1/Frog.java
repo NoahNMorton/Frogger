@@ -1,43 +1,23 @@
 package pack1;
 
 
-public class Frog {
+import java.awt.*;
 
-    public static final int LEFT = 0, RIGHT = 1, DOWN = 2, UP = 3, WIDTH = 22;
-    private int x, y, direction;
+public class Frog extends FroggerItem {
 
-    public Frog(int x, int y) {
-        direction = UP;
-        this.x = x;
-        this.y = y;
+    public static final int UP =0, DOWN=1;
+    private double x, y, direction;
+    Rectangle waterRect = new Rectangle();
+
+    public Frog(double x, double y) {
+        super(40,0,UP,x,y);
     }
 
-    public int getY() {
-        return y;
+    public int getWidth() {
+        return 40;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public Rectangle getWaterRect() {
+        return waterRect;
     }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getHitX() {
-        return x + 9;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
-
 }

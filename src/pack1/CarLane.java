@@ -5,10 +5,9 @@ public class CarLane extends Lane {
 
     public CarLane(double speed, int direction, int y) {
         super(speed, direction, y);
-
     }
 
-    void update() {
+    void update() { //todo check, should be working
         super.update();
         int carType = (int) (Math.random() * 4);
         int length;

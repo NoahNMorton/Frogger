@@ -1,20 +1,17 @@
 package pack1;
 
 
-public class LilyPad {
+public class LilyPad extends FroggerItem {
 
-    public static final int WIDTH = 40;
     int x, y;
     boolean frog;
 
-    public LilyPad(int x, int y) {
-        this.x = x;
-        this.y = y;
-        frog = false;
+    public LilyPad(double x, double y) {
+        super(0,0,0,x,y);
     }
 
-    public static int getWidth() {
-        return WIDTH;
+    public int getWidth() {
+        return 40;
     }
 
     public boolean isFrog() {
@@ -25,11 +22,4 @@ public class LilyPad {
         this.frog = frog;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 }

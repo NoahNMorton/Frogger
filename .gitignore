@@ -14,7 +14,7 @@ hs_err_pid*
 #IDE Files
 *.iml
 *.cfg
-*.log
+programLog.log
 .idea/*
 out/*
 

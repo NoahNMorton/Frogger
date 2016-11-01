@@ -12,14 +12,16 @@ public class Turtle extends FroggerItem {
     }
 
     public int getWidth() {
-        //returns width based on type.
+        //todo returns width based on type.
         return 0;
     }
 
     void update() {
         super.update();
-        //changes mode periodically when mode is not ALWAYS_UP
+        //todo changes mode periodically when mode is not ALWAYS_UP
     }
 
-
+    public int getMode() {
+        return mode;
+    }
 }

@@ -10,6 +10,7 @@ public class FroggerGame {
     Frog player;
     LogLane[] logLanes;
     CarLane[] carLanes;
+    TurtleLane[] turtleLanes;
     LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
 
     public FroggerGame() {
@@ -25,7 +26,8 @@ public class FroggerGame {
         lilyPadses[3] = new LilyPad(612, 30);
         //log and car lanes -------------
         carLanes = new CarLane[5];
-        logLanes = new LogLane[1];
+        logLanes = new LogLane[1]; //todo create all the log lanes
+        turtleLanes = new TurtleLane[1]; //todo create all turtle lanes
         carLanes[0] = new CarLane(3, Lane.RIGHT, 300);
         carLanes[1] = new CarLane(3, Lane.LEFT, 340);
         carLanes[2] = new CarLane(3, Lane.RIGHT, 380);
@@ -33,6 +35,7 @@ public class FroggerGame {
         carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
 
         logLanes[0] = new LogLane(1, Lane.RIGHT, 200);
+
 
 
         /*
@@ -79,6 +82,10 @@ public class FroggerGame {
     public LilyPad[] getLilyPadses() {
         return lilyPadses;
 
+    }
+
+    public TurtleLane[] getTurtleLanes() {
+        return turtleLanes;
     }
 
     public int getTimeLeft() {
