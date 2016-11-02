@@ -5,7 +5,7 @@ import java.awt.*;
 
 public abstract class FroggerItem {
 
-    private static final int LEFT = 2, RIGHT = 3;
+    public static final int LEFT = 2, RIGHT = 3;
     double speed, x, y;
     int direction, type;
     private Rectangle rect = new Rectangle();

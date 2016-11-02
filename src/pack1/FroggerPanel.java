@@ -98,7 +98,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyTyped(KeyEvent e) {
-       /* switch (e.getKeyChar()) { todo fix movement code
+        switch (e.getKeyChar()) {
             case 'w':
                 if ((game.getPlayer().getY() - 40) > 30)
                     game.getPlayer().setY(game.getPlayer().getY() - 40);
@@ -119,7 +119,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                     game.getPlayer().setX(game.getPlayer().getX() + 40);
                 game.getPlayer().setDirection(Frog.RIGHT);
                 break;
-        }*/
+        }
     }
 
     public void paint(Graphics g) {
@@ -171,19 +171,19 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
-        //draw frog -------------------------- todo fix drawing of frog >Primary focus
+        //draw frog --------------------------
         switch (game.getPlayer().getDirection()) { //draw frog based on direction
             case Frog.UP:
-                g.drawImage(frogUp, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
+                g.drawImage(frogUp, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
             case Frog.DOWN:
-                g.drawImage(frogDown, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
+                g.drawImage(frogDown, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
             case Frog.LEFT:
-                g.drawImage(frogLeft, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
+                g.drawImage(frogLeft, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
             case Frog.RIGHT:
-                g.drawImage(frogRight, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
+                g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
         }
         //MOVING OBJECTS ---------------------------------------
