@@ -171,21 +171,21 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
-        //draw frog -------------------------- todo fix drawing of frog
-        /*switch (game.getPlayer().getDirection()) { //draw frog based on direction
+        //draw frog -------------------------- todo fix drawing of frog >Primary focus
+        switch (game.getPlayer().getDirection()) { //draw frog based on direction
             case Frog.UP:
-                g.drawImage(frogUp, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                g.drawImage(frogUp, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
                 break;
             case Frog.DOWN:
-                g.drawImage(frogDown, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                g.drawImage(frogDown, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
                 break;
             case Frog.LEFT:
-                g.drawImage(frogLeft, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                g.drawImage(frogLeft, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
                 break;
             case Frog.RIGHT:
-                g.drawImage(frogRight, game.getPlayer().getX(), game.getPlayer().getY(), null);
+                g.drawImage(frogRight, (int)game.getPlayer().getX(), (int)game.getPlayer().getY(), null);
                 break;
-        }*/
+        }
         //MOVING OBJECTS ---------------------------------------
         //cars ------------
         for (CarLane cl : game.getCarLanes()) //all car lanes
