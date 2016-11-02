@@ -13,9 +13,7 @@ public class FroggerFrame extends JFrame {
 
     public FroggerFrame() {
 
-
         super("Frogger");
-
 
         // Sets the close button to exit the program
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -46,7 +44,6 @@ public class FroggerFrame extends JFrame {
 
 
         Logger.logOtherMessage("Window", "Window Created.");
-
     }
 
 

@@ -11,6 +11,7 @@ public class Frog extends FroggerItem {
 
     public Frog(double x, double y) {
         super(40, 0, UP, x, y);
+        Logger.logCodeMessage("Set up frog.");
     }
 
     public int getWidth() {

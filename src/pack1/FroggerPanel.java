@@ -68,7 +68,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             System.exit(-1); //if loading fails, end the program.
         }
         addKeyListener(this);
-
+        Logger.logOtherMessage("KeyListener", "Added.");
     }
 
     @Deprecated
@@ -211,6 +211,20 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 }
             }
         }
+        //logs ----------------------------------
+        for (LogLane lL : game.getLogLanes()) //all log lanes todo *null pointer here* -fix, might be correct with fix elsewhere
+        {
+            for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
+            {
+                if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Log.SHORT) {
+                    g.drawImage(sLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                } else if (lL.froggerItems.get(p).getDirection() == Lane.LEFT && lL.froggerItems.get(p).getType() == Log.MEDIUM) {
+                    g.drawImage(mLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                } else if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Log.LONG) {
+                    g.drawImage(lLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                }
+            }
+        }
     }
 
     void update() {
@@ -225,7 +239,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     void reset() {
         this.game = new FroggerGame();
+        Logger.logCodeMessage("Reset the game.");
     }
-
 
 }

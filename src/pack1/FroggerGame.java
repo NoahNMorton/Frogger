@@ -5,7 +5,7 @@ public class FroggerGame {
 
     public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 80;
 
-    int status, lives, startLifeTime;
+    private int status, lives, startLifeTime;
     boolean reachedMiddle;
     Frog player;
     LogLane[] logLanes;
@@ -26,16 +26,19 @@ public class FroggerGame {
         lilyPadses[3] = new LilyPad(612, 30);
         //log and car lanes -------------
         carLanes = new CarLane[5];
-        logLanes = new LogLane[1]; //todo create all the log lanes
+        logLanes = new LogLane[1]; //todo create all the log lanes in order up : turtle, log, log, turtle, log
         turtleLanes = new TurtleLane[1]; //todo create all turtle lanes
         carLanes[0] = new CarLane(3, Lane.RIGHT, 300);
         carLanes[1] = new CarLane(3, Lane.LEFT, 340);
         carLanes[2] = new CarLane(3, Lane.RIGHT, 380);
         carLanes[3] = new CarLane(3, Lane.LEFT, 420);
         carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
+        Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
-        logLanes[0] = new LogLane(1, Lane.RIGHT, 200);
+        //logLanes[0] = new LogLane(1, Lane.RIGHT, 200); //todo set y value correctly
+        //Logger.logOtherMessage("Lanes","Setup log lanes.");
 
+        //turtle lanes ---------------------
 
 
         /*
@@ -51,7 +54,7 @@ public class FroggerGame {
         //todo moves cars logs turtles, calls runChecks >help
         for (int u = 0; u < carLanes.length; u++)
             carLanes[u].update();
-        //for (int y = 0; y < carLanes.length; y++)
+        //for (int y = 0; y < logLanes.length; y++)
         //logLanes[y].update();
 
         runChecks();
