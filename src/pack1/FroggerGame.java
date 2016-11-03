@@ -38,11 +38,11 @@ public class FroggerGame {
 
         logLanes[0] = new LogLane(2, Lane.RIGHT, 100);
         logLanes[1] = new LogLane(2, Lane.RIGHT, 140);
-        logLanes[2] = new LogLane(2, Lane.LEFT, 180); //todo set y value correctly -test
+        logLanes[2] = new LogLane(2, Lane.LEFT, 180); //todo set y value correctly -swap top log and top turtle
         Logger.logOtherMessage("Lanes","Setup log lanes.");
 
         //turtle lanes ---------------------
-        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 120);
+        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 70);
         turtleLanes[1] = new TurtleLane(2, Lane.RIGHT, 220);
         Logger.logOtherMessage("Lanes","Setup turtle lanes.");
 

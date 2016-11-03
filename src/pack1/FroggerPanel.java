@@ -225,6 +225,20 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 }
             }
         }
+        //turtles -------------------------
+        for (TurtleLane lL : game.getTurtleLanes()) //all log lanes todo *null pointer here* -fix, might be correct with fix elsewhere
+        {
+            for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
+            {
+                if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Turtle.ONE_TURTLE) {
+                    g.drawImage(hsTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                } else if (lL.froggerItems.get(p).getDirection() == Lane.LEFT && lL.froggerItems.get(p).getType() == Turtle.TWO_TURTLE) {
+                    g.drawImage(hmTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                } else if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Turtle.THREE_TURTLE) {
+                    g.drawImage(hlTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                }
+            }
+        }
     }
 
     void update() {
