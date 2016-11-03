@@ -26,20 +26,25 @@ public class FroggerGame {
         lilyPadses[3] = new LilyPad(612, 30);
         //log and car lanes -------------
         carLanes = new CarLane[5];
-        logLanes = new LogLane[1]; //todo create all the log lanes in order up : turtle, log, log, turtle, log
-        turtleLanes = new TurtleLane[1]; //todo create all turtle lanes
-        carLanes[0] = new CarLane(3, Lane.RIGHT, 300);
+        logLanes = new LogLane[3]; //todo create all the log lanes in order up : turtle, log, log, turtle, log
+        turtleLanes = new TurtleLane[2]; //todo create all turtle lanes
+
+        carLanes[0] = new CarLane(6, Lane.RIGHT, 300);
         carLanes[1] = new CarLane(3, Lane.LEFT, 340);
-        carLanes[2] = new CarLane(3, Lane.RIGHT, 380);
-        carLanes[3] = new CarLane(3, Lane.LEFT, 420);
+        carLanes[2] = new CarLane(1, Lane.RIGHT, 380);
+        carLanes[3] = new CarLane(6, Lane.LEFT, 420);
         carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
         Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
-        //logLanes[0] = new LogLane(1, Lane.RIGHT, 200); //todo set y value correctly
-        //Logger.logOtherMessage("Lanes","Setup log lanes.");
+        logLanes[0] = new LogLane(2, Lane.RIGHT, 100);
+        logLanes[1] = new LogLane(2, Lane.RIGHT, 140);
+        logLanes[2] = new LogLane(2, Lane.LEFT, 180); //todo set y value correctly -test
+        Logger.logOtherMessage("Lanes","Setup log lanes.");
 
         //turtle lanes ---------------------
-
+        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 120);
+        turtleLanes[1] = new TurtleLane(2, Lane.RIGHT, 220);
+        Logger.logOtherMessage("Lanes","Setup turtle lanes.");
 
         /*
         todo Sets the lifeTimer
@@ -54,8 +59,10 @@ public class FroggerGame {
         //todo moves cars logs turtles, calls runChecks >help
         for (int u = 0; u < carLanes.length; u++)
             carLanes[u].update();
-        //for (int y = 0; y < logLanes.length; y++)
-        //logLanes[y].update();
+        for (int y = 0; y < logLanes.length; y++)
+            logLanes[y].update();
+        for (int k = 0; k < turtleLanes.length; k++)
+            turtleLanes[k].update();
 
         runChecks();
     }
