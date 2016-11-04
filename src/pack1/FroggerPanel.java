@@ -11,11 +11,11 @@ import java.io.File;
 
 public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
-    BufferedImage car1_Left, car1_Right, car2_Left, car2_Right, limo_Left, limo_Right, semi_Left, semi_Right, frogUp, frogDown,
-            frogLeft, frogRight, hsTurtle, hmTurtle, hlTurtle, sTurtle, mTurtle, lTurtle, sLog, mLog, lLog, lilyPad, frogLife;
-    FroggerGame game;
     //BufferedImage buffer;
     int updatesPerSecond;
+    private BufferedImage car1_Left, car1_Right, car2_Left, car2_Right, limo_Left, limo_Right, semi_Left, semi_Right, frogUp, frogDown,
+            frogLeft, frogRight, hsTurtle, hmTurtle, hlTurtle, sTurtle, mTurtle, lTurtle, sLog, mLog, lLog, lilyPad, frogLife;
+    private FroggerGame game;
 
     public FroggerPanel() {
         setSize(700, 640);
@@ -89,7 +89,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             update();
             repaint();
             try {
-                Thread.sleep(35); //todo correct times per second?
+                Thread.sleep(35);
             } catch (Exception e) {
                 System.err.println("Error Sleeping.");
                 Logger.logErrorMessage("Error Sleeping Thread.");
@@ -171,21 +171,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
-        //draw frog --------------------------
-        switch (game.getPlayer().getDirection()) { //draw frog based on direction
-            case Frog.UP:
-                g.drawImage(frogUp, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
-                break;
-            case Frog.DOWN:
-                g.drawImage(frogDown, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
-                break;
-            case Frog.LEFT:
-                g.drawImage(frogLeft, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
-                break;
-            case Frog.RIGHT:
-                g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
-                break;
-        }
         //MOVING OBJECTS ---------------------------------------
         //cars ------------
         for (CarLane cl : game.getCarLanes()) //all car lanes
@@ -212,7 +197,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //logs ----------------------------------
-        for (LogLane lL : game.getLogLanes()) //all log lanes todo *null pointer here* -fix, might be correct with fix elsewhere
+        for (LogLane lL : game.getLogLanes()) //all log lanes
         {
             for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
             {
@@ -226,18 +211,33 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //turtles -------------------------
-        for (TurtleLane lL : game.getTurtleLanes()) //all log lanes todo *null pointer here* -fix, might be correct with fix elsewhere
+        for (TurtleLane lL : game.getTurtleLanes()) //all log lanes
         {
             for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
             {
                 if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Turtle.ONE_TURTLE) {
-                    g.drawImage(hsTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                    g.drawImage(sTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
                 } else if (lL.froggerItems.get(p).getDirection() == Lane.LEFT && lL.froggerItems.get(p).getType() == Turtle.TWO_TURTLE) {
-                    g.drawImage(hmTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                    g.drawImage(mTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
                 } else if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Turtle.THREE_TURTLE) {
-                    g.drawImage(hlTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                    g.drawImage(lTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
                 }
             }
+        }
+        //draw frog --------------------------
+        switch (game.getPlayer().getDirection()) { //draw frog based on direction
+            case Frog.UP:
+                g.drawImage(frogUp, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
+                break;
+            case Frog.DOWN:
+                g.drawImage(frogDown, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
+                break;
+            case Frog.LEFT:
+                g.drawImage(frogLeft, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
+                break;
+            case Frog.RIGHT:
+                g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
+                break;
         }
     }
 
@@ -251,7 +251,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         Logger.logCodeMessage("Requested focus on the window.");
     }
 
-    void reset() {
+    private void reset() {
         this.game = new FroggerGame();
         Logger.logCodeMessage("Reset the game.");
     }

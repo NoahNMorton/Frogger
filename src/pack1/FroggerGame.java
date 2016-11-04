@@ -4,14 +4,13 @@ package pack1;
 public class FroggerGame {
 
     public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 80;
-
-    private int status, lives, startLifeTime;
     boolean reachedMiddle;
     Frog player;
     LogLane[] logLanes;
     CarLane[] carLanes;
     TurtleLane[] turtleLanes;
     LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
+    private int status, lives, startLifeTime;
 
     public FroggerGame() {
         status = FroggerGame.PLAYING;
@@ -26,8 +25,8 @@ public class FroggerGame {
         lilyPadses[3] = new LilyPad(612, 30);
         //log and car lanes -------------
         carLanes = new CarLane[5];
-        logLanes = new LogLane[3]; //todo create all the log lanes in order up : turtle, log, log, turtle, log
-        turtleLanes = new TurtleLane[2]; //todo create all turtle lanes
+        logLanes = new LogLane[3];
+        turtleLanes = new TurtleLane[2];
 
         carLanes[0] = new CarLane(6, Lane.RIGHT, 300);
         carLanes[1] = new CarLane(3, Lane.LEFT, 340);
@@ -36,33 +35,28 @@ public class FroggerGame {
         carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
         Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
-        logLanes[0] = new LogLane(2, Lane.RIGHT, 100);
+        logLanes[0] = new LogLane(2, Lane.RIGHT, 70);
         logLanes[1] = new LogLane(2, Lane.RIGHT, 140);
-        logLanes[2] = new LogLane(2, Lane.LEFT, 180); //todo set y value correctly -swap top log and top turtle
-        Logger.logOtherMessage("Lanes","Setup log lanes.");
+        logLanes[2] = new LogLane(2, Lane.LEFT, 180);
+        Logger.logOtherMessage("Lanes", "Setup log lanes.");
 
         //turtle lanes ---------------------
-        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 70);
+        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 100);
         turtleLanes[1] = new TurtleLane(2, Lane.RIGHT, 220);
-        Logger.logOtherMessage("Lanes","Setup turtle lanes.");
+        Logger.logOtherMessage("Lanes", "Setup turtle lanes.");
 
-        /*
-        todo Sets the lifeTimer
-        todo Creates all the lanes
-        */
+
+        //todo Sets the lifeTimer
+
 
         for (int t = 0; t < 1000; t++) //calls update on all lanes before loading game
             update();
     }
 
     void update() {
-        //todo moves cars logs turtles, calls runChecks >help
-        for (int u = 0; u < carLanes.length; u++)
-            carLanes[u].update();
-        for (int y = 0; y < logLanes.length; y++)
-            logLanes[y].update();
-        for (int k = 0; k < turtleLanes.length; k++)
-            turtleLanes[k].update();
+        for (CarLane carLane : carLanes) carLane.update();
+        for (LogLane logLane : logLanes) logLane.update();
+        for (TurtleLane turtleLane : turtleLanes) turtleLane.update();
 
         runChecks();
     }

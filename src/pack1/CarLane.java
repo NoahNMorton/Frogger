@@ -7,7 +7,7 @@ public class CarLane extends Lane {
         super(speed, direction, y);
     }
 
-    void update() { //todo check, should be working
+    void update() {
         super.update();
         int carType = (int) (Math.random() * 4);
         int length;
