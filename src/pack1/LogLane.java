@@ -24,32 +24,29 @@ public class LogLane extends Lane {
         }
         if (direction == RIGHT) {
             int location = -120 - (int) (Math.random() * 49) - length;
-            if (froggerItems.size() == 0) {
+            if (froggerItems.size() == 0) { //adds a log if there is no logs, ie start of game
                 froggerItems.add(new Log(speed, (int) (Math.random() * 4), RIGHT, location, y));
             }
-            for (int i = 0; i < froggerItems.size(); i++) {
+            for (int i = 0; i < froggerItems.size(); i++) { //removes logs once they go offscreen
                 if (froggerItems.get(i).getDirection() == Lane.LEFT && froggerItems.get(i).getX() < -20)
                     froggerItems.remove(i);
-                if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720)
-                    froggerItems.remove(i);
-
             }
-            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() > 0) {
+            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() > 0) { //creates a new log
 
-                Log newLog = new Log(speed, logType, RIGHT, location, y);
-                newLog.setX(location - newLog.getWidth());
+                Log newLog = new Log(speed, logType, RIGHT, location, y); //log is initially made with the wrong location, since we can't access the width yet
+                newLog.setX(location - newLog.getWidth()); //correct the location after creation
                 froggerItems.add(newLog);
             }
         } else if (direction == LEFT) {
             int location = 700 + (int) (Math.random() * 49) + length; //set location of car to spawn
-            if (froggerItems.size() == 0) {
-                froggerItems.add(new Log(speed, (int) (Math.random() * 4), LEFT, location, y));
+            if (froggerItems.size() == 0) { //adds a log if there is no logs, ie start of game
+                froggerItems.add(new Log(speed, logType, LEFT, location, y));
             }
-            for (int i = 0; i < froggerItems.size(); i++) {
+            for (int i = 0; i < froggerItems.size(); i++) { //removes logs if they go offscreen
                 if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720)
                     froggerItems.remove(i);
             }
-            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() < 700) {
+            if ((int) froggerItems.get(froggerItems.size() - 1).getX() + froggerItems.get(froggerItems.size() - 1).getWidth() < 700) { //adds a new log
                 froggerItems.add(new Log(speed, logType, LEFT, location, y));
             }
         }

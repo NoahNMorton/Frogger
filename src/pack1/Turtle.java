@@ -12,6 +12,10 @@ public class Turtle extends FroggerItem {
         this.type = type;
     }
 
+    /**
+     * Returns the width based on the size of the turtle platform.
+     * @return width of image based on type of turtle, ONE_TURTLE, etc
+     */
     public int getWidth() {
         switch (type) {
             case ONE_TURTLE:
