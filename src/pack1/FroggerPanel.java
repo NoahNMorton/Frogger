@@ -201,11 +201,11 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         {
             for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
             {
-                if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Log.SHORT) {
+                if (lL.froggerItems.get(p).getType() == Log.SHORT) {
                     g.drawImage(sLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
-                } else if (lL.froggerItems.get(p).getDirection() == Lane.LEFT && lL.froggerItems.get(p).getType() == Log.MEDIUM) {
+                } else if (lL.froggerItems.get(p).getType() == Log.MEDIUM) {
                     g.drawImage(mLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
-                } else if (lL.froggerItems.get(p).getDirection() == Lane.RIGHT && lL.froggerItems.get(p).getType() == Log.LONG) {
+                } else if (lL.froggerItems.get(p).getType() == Log.LONG) {
                     g.drawImage(lLog, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
                 }
             }

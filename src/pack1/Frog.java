@@ -1,12 +1,9 @@
 package pack1;
 
 
-import java.awt.*;
-
 public class Frog extends FroggerItem {
 
     public static final int UP = 0, DOWN = 1;
-    Rectangle waterRect = new Rectangle();
     private double x, y, direction;
 
     public Frog(double x, double y) {
@@ -18,7 +15,4 @@ public class Frog extends FroggerItem {
         return 40;
     }
 
-    public Rectangle getWaterRect() {
-        return waterRect;
-    }
 }
