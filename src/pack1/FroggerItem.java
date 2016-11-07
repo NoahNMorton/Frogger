@@ -49,7 +49,7 @@ public abstract class FroggerItem {
     }
 
     public void updateRectangle() {
-        //todo update rectangle
+        this.rect = new Rectangle((int)x,(int)y,getWidth(),40);
     }
 
     public Rectangle getRect() {

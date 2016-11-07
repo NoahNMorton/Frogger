@@ -97,13 +97,25 @@ public class FroggerGame {
     }
 
     void playerDeath() {
+        status=DEAD;
+        lives--;
+
         /*Updates the lives, player position and status
         anytime the player dies
         */
     }
 
-    void carCheck() {
-        //todo kills player when contacting car
+    /**
+     * Checks to see if a car killed the player.
+     */
+    void carCheck() { //todo check >prime focus
+        for (int i = 0; i < carLanes.length; i++) {
+            for (int j = 0; j < carLanes[i].getFroggerItems().size(); j++) {
+                if (carLanes[i].getFroggerItems().get(j).getRect().intersects(player.getRect())) {
+                    playerDeath();
+                }
+            }
+        }
     }
 
     void logCheck() {
@@ -128,6 +140,8 @@ public class FroggerGame {
 
     void runChecks() {
         //todo calls correct check methods based on y pos
+        //for now, just call carchecks
+        carCheck();
     }
 
 
