@@ -33,7 +33,6 @@ public class Turtle extends FroggerItem {
         super.update();
         //todo changes mode periodically when mode is not ALWAYS_UP
     }
-
     public int getMode() {
         return mode;
     }
