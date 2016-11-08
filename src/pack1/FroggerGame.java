@@ -96,8 +96,9 @@ public class FroggerGame {
     }
 
     void playerDeath() {
-        status=DEAD;
+        Logger.logUserMessage("User died.");
         lives--;
+        if(lives==0) status=DEAD; //if game over
         player = new Frog(320,500); //set player back at spawn point
     }
 
