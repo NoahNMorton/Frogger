@@ -1,6 +1,8 @@
 package pack1;
 
 
+import java.util.ArrayList;
+
 public class FroggerGame {
 
     public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 80;
@@ -75,17 +77,14 @@ public class FroggerGame {
 
     public LogLane[] getLogLanes() {
         return logLanes;
-
     }
 
     public CarLane[] getCarLanes() {
         return carLanes;
-
     }
 
     public LilyPad[] getLilyPadses() {
         return lilyPadses;
-
     }
 
     public TurtleLane[] getTurtleLanes() {
@@ -99,34 +98,43 @@ public class FroggerGame {
     void playerDeath() {
         status=DEAD;
         lives--;
-
-        /*Updates the lives, player position and status
-        anytime the player dies
-        */
+        player = new Frog(320,500); //set player back at spawn point
     }
 
     /**
      * Checks to see if a car killed the player.
      */
-    void carCheck() { //todo check >prime focus
+    private void carCheck() {
         for (int i = 0; i < carLanes.length; i++) {
-            for (int j = 0; j < carLanes[i].getFroggerItems().size(); j++) {
-                if (carLanes[i].getFroggerItems().get(j).getRect().intersects(player.getRect())) {
+            ArrayList<FroggerItem> fIOfCarLane = carLanes[i].getFroggerItems();
+            for (int j = 0; j < fIOfCarLane.size(); j++) {
+                if ( fIOfCarLane.get(j).getRect().intersects(player.getRect())) {
                     playerDeath();
                 }
             }
         }
     }
 
-    void logCheck() {
+    private void logCheck() {
         //todo moves player if on log with log, otherwise kills
+        for (int i = 0; i < logLanes.length; i++) {
+            ArrayList<FroggerItem> fIOfLogLane = logLanes[i].getFroggerItems();
+            for (int j = 0; j < fIOfLogLane.size(); j++) {
+                if (!fIOfLogLane.get(j).getRect().intersects(player.getRect())) { //if they don't intersect, aka off the log
+                    playerDeath();
+                }
+                else {
+                    //move frog
+                }
+            }
+        }
     }
 
-    void turtleCheck() {
+    private void turtleCheck() {
         //todo moves player with non-down turtle, otherwise kills
     }
 
-    void lilyCheck() {
+    private void lilyCheck() {
         /* todo lilyCheck
         Processes the games response when the player is in
         the lane with the lily pads. If the player is on the

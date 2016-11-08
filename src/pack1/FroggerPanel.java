@@ -171,6 +171,24 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
+        //lives ----------------------
+        switch (game.getLives()) {
+            case 3:
+                g.drawImage(frogLife,150,600,null);
+                g.drawImage(frogLife,180,600,null);
+                g.drawImage(frogLife,210,600,null);
+                break;
+            case 2:
+                g.drawImage(frogLife,150,600,null);
+                g.drawImage(frogLife,180,600,null);
+                break;
+            case 1:
+                g.drawImage(frogLife,150,600,null);
+                break;
+            default:
+                //do nothing
+        }
+
         //MOVING OBJECTS ---------------------------------------
         //cars ------------
         for (CarLane cl : game.getCarLanes()) //all car lanes
@@ -239,6 +257,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
         }
+
     }
 
     void update() {

@@ -9,7 +9,7 @@ public class CarLane extends Lane {
 
     void update() {
         super.update();
-        int carType = (int) (Math.random() * 4);
+        int carType = ((int) (Math.random() * 4));
         int length;
         switch (carType) {
             case Car.SEMI: //if semi
@@ -25,7 +25,7 @@ public class CarLane extends Lane {
         if (direction == RIGHT) {
             int location = -120 - (int) (Math.random() * 49) - length;
             if (froggerItems.size() == 0) {
-                froggerItems.add(new Car(speed, (int) (Math.random() * 4), RIGHT, location, y));
+                froggerItems.add(new Car(speed, carType, RIGHT, location, y));
             }
             for (int i = 0; i < froggerItems.size(); i++) {
                 if (froggerItems.get(i).getDirection() == Lane.LEFT && froggerItems.get(i).getX() < -20)
@@ -43,7 +43,7 @@ public class CarLane extends Lane {
         } else if (direction == LEFT) {
             int location = 700 + (int) (Math.random() * 49) + length; //set location of car to spawn
             if (froggerItems.size() == 0) {
-                froggerItems.add(new Car(speed, (int) (Math.random() * 4), LEFT, location, y));
+                froggerItems.add(new Car(speed,carType, LEFT, location, y));
             }
             for (int i = 0; i < froggerItems.size(); i++) {
                 if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720)
