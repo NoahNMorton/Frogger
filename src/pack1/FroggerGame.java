@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class FroggerGame {
 
     public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 80;
-    boolean reachedMiddle;
-    Frog player;
-    LogLane[] logLanes;
-    CarLane[] carLanes;
-    TurtleLane[] turtleLanes;
-    LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
+    private boolean reachedMiddle;
+    private Frog player;
+    private LogLane[] logLanes;
+    private CarLane[] carLanes;
+    private TurtleLane[] turtleLanes;
+    private LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
     private int status, lives, startLifeTime;
 
     public FroggerGame() {
@@ -95,10 +95,16 @@ public class FroggerGame {
         return MAX_LIFE_TIME - startLifeTime;
     }
 
-    void playerDeath() {
+    /**
+     * Preforms actions to "kill the player", such as removing a life, re-spawning, etc
+     */
+    private void playerDeath() {
         Logger.logUserMessage("User died.");
         lives--;
-        if(lives==0) status=DEAD; //if game over
+        if (lives == 0) { //if game over
+            status = DEAD;
+            Logger.logUserMessage("Game over.");
+        }
         player = new Frog(320,500); //set player back at spawn point
     }
 
@@ -106,10 +112,10 @@ public class FroggerGame {
      * Checks to see if a car killed the player.
      */
     private void carCheck() {
-        for (int i = 0; i < carLanes.length; i++) {
-            ArrayList<FroggerItem> fIOfCarLane = carLanes[i].getFroggerItems();
-            for (int j = 0; j < fIOfCarLane.size(); j++) {
-                if ( fIOfCarLane.get(j).getRect().intersects(player.getRect())) {
+        for (CarLane carLane : carLanes) {
+            ArrayList<FroggerItem> fIOfCarLane = carLane.getFroggerItems();
+            for (FroggerItem aFIOfCarLane : fIOfCarLane) {
+                if (aFIOfCarLane.getRect().intersects(player.getRect())) { //if frog touching car
                     playerDeath();
                 }
             }
@@ -118,13 +124,12 @@ public class FroggerGame {
 
     private void logCheck() {
         //todo moves player if on log with log, otherwise kills
-        for (int i = 0; i < logLanes.length; i++) {
-            ArrayList<FroggerItem> fIOfLogLane = logLanes[i].getFroggerItems();
-            for (int j = 0; j < fIOfLogLane.size(); j++) {
-                if (!fIOfLogLane.get(j).getRect().intersects(player.getRect())) { //if they don't intersect, aka off the log
+        for (LogLane logLane : logLanes) {
+            ArrayList<FroggerItem> fIOfLogLane = logLane.getFroggerItems();
+            for (FroggerItem aFIOfLogLane : fIOfLogLane) {
+                if (!aFIOfLogLane.getRect().intersects(player.getRect())) { //if they don't intersect, aka off the log
                     playerDeath();
-                }
-                else {
+                } else {
                     //move frog
                 }
             }
@@ -147,7 +152,7 @@ public class FroggerGame {
          */
     }
 
-    void runChecks() {
+    private void runChecks() {
         //todo calls correct check methods based on y pos
         //for now, just call carchecks
         carCheck();

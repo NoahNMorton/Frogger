@@ -265,12 +265,13 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
         }
-        //draw game over screen ------------------------------------ todo get game over screen to display >prime focus
+        //draw game over screen --------------------------
         if(game.getStatus()==game.DEAD) {
             g.setColor(Color.lightGray);
-            g.drawRect(0,0,700,460); //cover the screen
+            g.fillRect(0, 0, 700, 640); //cover the screen
             g.setColor(Color.black);
-            g.drawString("Game Over\nPress n to restart.",30,300);
+            g.drawString("Game Over", 30, 300);
+            g.drawString("Press n to restart.", 30, 340);
         }
     }
 

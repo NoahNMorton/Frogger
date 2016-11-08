@@ -10,7 +10,6 @@ public class Lane {
     double speed, y;
     ArrayList<FroggerItem> froggerItems = new ArrayList<>();
 
-
     public Lane(double speed, int direction, int y) {
         this.speed = speed;
         this.direction = direction;
@@ -34,7 +33,7 @@ public class Lane {
     }
 
     void update() {
-        //System.out.println("Moving all objects");
+        //noinspection Convert2streamapi
         for (FroggerItem froggerItem : froggerItems) {
             froggerItem.update();
         }
