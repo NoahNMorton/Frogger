@@ -131,6 +131,7 @@ public class FroggerGame {
                     playerDeath();
                 } else {
                     //move frog
+                    player.setX(player.getX()+2);
                 }
             }
         }
@@ -157,6 +158,5 @@ public class FroggerGame {
         //for now, just call carchecks
         carCheck();
     }
-
 
 }
