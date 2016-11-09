@@ -12,12 +12,14 @@ public class FroggerGame {
     private CarLane[] carLanes;
     private TurtleLane[] turtleLanes;
     private LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
-    private int status, lives, startLifeTime;
+    private int status, lives, startLifeTime, difficulty;
 
     public FroggerGame(int difficulty) {
         status = FroggerGame.PLAYING;
         reachedMiddle = false;
         lives = 3;
+        this.difficulty = difficulty;
+        if (difficulty==0) difficulty = 1; //so stuff still moves in god mode.
         player = new Frog(320, 500);
         //lilly pads------------------------
         lilyPadses = new LilyPad[4];
@@ -30,7 +32,7 @@ public class FroggerGame {
         logLanes = new LogLane[3];
         turtleLanes = new TurtleLane[2];
 
-        carLanes[0] = new CarLane(difficulty*2, Lane.RIGHT, 300);
+        carLanes[0] = new CarLane(difficulty*2, Lane.RIGHT, 300); //speed is based on the difficulty.
         carLanes[1] = new CarLane(difficulty*2, Lane.LEFT, 340);
         carLanes[2] = new CarLane(difficulty, Lane.RIGHT, 380);
         carLanes[3] = new CarLane(difficulty*2, Lane.LEFT, 420);
@@ -59,7 +61,11 @@ public class FroggerGame {
         for (CarLane carLane : carLanes) carLane.update();
         for (LogLane logLane : logLanes) logLane.update();
         for (TurtleLane turtleLane : turtleLanes) turtleLane.update();
-
+        if (player.getY() == 60 || player.getY() == 140) //if on a right bound lane
+            player.setX(player.getX()+difficulty); //move frog same speed as log.
+        else if (player.getY() == 180) //if on a left bound lane
+            player.setX(player.getX()-difficulty); //move frog same speed as log.
+        
         runChecks();
     }
 
@@ -117,23 +123,24 @@ public class FroggerGame {
             for (FroggerItem aFIOfCarLane : fIOfCarLane) {
                 if (aFIOfCarLane.getRect().intersects(player.getRect())) { //if frog touching car
                     playerDeath();
+                    return;
                 }
+                return;
             }
         }
     }
 
     private void logCheck() {
+        boolean dead = true;
         for (LogLane logLane : logLanes) {
             ArrayList<FroggerItem> fIOfLogLane = logLane.getFroggerItems();
             for (FroggerItem aFIOfLogLane : fIOfLogLane) {
-                if (!aFIOfLogLane.getRect().intersects(player.getRect())) { //if they don't intersect, aka off the log
-                    playerDeath();
-                } else {
-                    //move frog
-                    player.setX(player.getX()+2);
+                if (aFIOfLogLane.getRect().intersects(player.getRect())) { //if they do intersect, aka on the log
+                    dead = false;
                 }
             }
         }
+        if (dead) playerDeath(); //if still marked for death, kill the frog.
     }
 
     private void turtleCheck() {
@@ -153,13 +160,16 @@ public class FroggerGame {
     }
 
     private void runChecks() {
+        if (difficulty==0) { //don't do checks if in god mode.
+            return;
+        }
         double y = player.getY();
-        //todo calls correct check methods based on y pos
-        //for now, just call carchecks
-        if (y<=460 && y>=300) {
+        if (y<=460 && y>=300) { //in car lanes
             carCheck();
-        } else if(y<=100 && y>= 200) {
-            //todo the other checks
+        } else if(y==100 || y== 220) { //in a turtle lane
+            turtleCheck();
+        } else if(y==180 || y== 140 || y==60) { //in a log lane.
+            logCheck();
         }
 
     }

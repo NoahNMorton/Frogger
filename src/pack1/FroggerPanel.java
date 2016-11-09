@@ -290,10 +290,10 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         int difficulty;
         Logger.logCodeMessage("Asking user for difficulty.");
         do {
-            String diff = JOptionPane.showInputDialog(null, "What difficulty setting? 1 for easy, 2 for medium, and 3 for hard.");
+            String diff = JOptionPane.showInputDialog(null, "What difficulty setting? 1 for easy, 2 for medium, and 3 for hard. 0 for god mode.");
             try {
                 difficulty = Integer.parseInt(diff);
-                if (difficulty < 1 || difficulty > 3) {
+                if (difficulty < 0 || difficulty > 3) {
                     JOptionPane.showMessageDialog(null, "Invalid difficulty, try again.");
                 } else
                     break;
