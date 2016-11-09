@@ -79,8 +79,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Deprecated
     public void keyPressed(KeyEvent e) {
         //unused
-        System.out.println(game.getPlayer().getY());
-
     }
 
     @Override
@@ -99,7 +97,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyTyped(KeyEvent e) {
-        if(game.getStatus()!=game.DEAD) {
+        if (game.getStatus() != game.DEAD) {
             switch (e.getKeyChar()) {
                 case 'w':
                     if ((game.getPlayer().getY() - 40) > 30)
@@ -122,9 +120,8 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                     game.getPlayer().setDirection(Frog.RIGHT);
                     break;
             }
-        }
-        else { //dead
-            if (e.getKeyChar()=='n') {
+        } else { //dead
+            if (e.getKeyChar() == 'n') {
                 Logger.logUserMessage("Started a new game.");
                 reset();
             }
@@ -183,16 +180,16 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         //lives ----------------------
         switch (game.getLives()) {
             case 3:
-                g.drawImage(frogLife,150,600,null);
-                g.drawImage(frogLife,180,600,null);
-                g.drawImage(frogLife,210,600,null);
+                g.drawImage(frogLife, 150, 600, null);
+                g.drawImage(frogLife, 180, 600, null);
+                g.drawImage(frogLife, 210, 600, null);
                 break;
             case 2:
-                g.drawImage(frogLife,150,600,null);
-                g.drawImage(frogLife,180,600,null);
+                g.drawImage(frogLife, 150, 600, null);
+                g.drawImage(frogLife, 180, 600, null);
                 break;
             case 1:
-                g.drawImage(frogLife,150,600,null);
+                g.drawImage(frogLife, 150, 600, null);
                 break;
             default:
                 //do nothing
@@ -267,7 +264,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 break;
         }
         //draw game over screen --------------------------
-        if(game.getStatus()==game.DEAD) {
+        if (game.getStatus() == game.DEAD) {
             g.setColor(Color.lightGray);
             g.fillRect(0, 0, 700, 640); //cover the screen
             g.setColor(Color.black);
@@ -300,8 +297,8 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "I don't understand what you provided. Try again.", "Difficulty error", JOptionPane.ERROR_MESSAGE);
             }
-        }while (true);
+        } while (true);
         this.game = new FroggerGame(difficulty);
-        Logger.logCodeMessage("Reset the game, difficulty is "+difficulty);
+        Logger.logCodeMessage("Reset the game, difficulty is " + difficulty);
     }
 }

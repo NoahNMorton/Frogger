@@ -43,7 +43,7 @@ public class CarLane extends Lane {
         } else if (direction == LEFT) {
             int location = 700 + (int) (Math.random() * 49) + length; //set location of car to spawn
             if (froggerItems.size() == 0) {
-                froggerItems.add(new Car(speed,carType, LEFT, location, y));
+                froggerItems.add(new Car(speed, carType, LEFT, location, y));
             }
             for (int i = 0; i < froggerItems.size(); i++) {
                 if (froggerItems.get(i).getDirection() == Lane.RIGHT && froggerItems.get(i).getX() > 720)

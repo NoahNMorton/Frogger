@@ -19,7 +19,7 @@ public class FroggerGame {
         reachedMiddle = false;
         lives = 3;
         this.difficulty = difficulty;
-        if (difficulty==0) difficulty = 1; //so stuff still moves in god mode.
+        if (difficulty == 0) difficulty = 1; //so stuff still moves in god mode.
         player = new Frog(320, 500);
         //lilly pads------------------------
         lilyPadses = new LilyPad[4];
@@ -32,11 +32,11 @@ public class FroggerGame {
         logLanes = new LogLane[3];
         turtleLanes = new TurtleLane[2];
 
-        carLanes[0] = new CarLane(difficulty*2, Lane.RIGHT, 300); //speed is based on the difficulty.
-        carLanes[1] = new CarLane(difficulty*2, Lane.LEFT, 340);
+        carLanes[0] = new CarLane(difficulty * 2, Lane.RIGHT, 300); //speed is based on the difficulty.
+        carLanes[1] = new CarLane(difficulty * 2, Lane.LEFT, 340);
         carLanes[2] = new CarLane(difficulty, Lane.RIGHT, 380);
-        carLanes[3] = new CarLane(difficulty*2, Lane.LEFT, 420);
-        carLanes[4] = new CarLane(difficulty*2, Lane.RIGHT, 460);
+        carLanes[3] = new CarLane(difficulty * 2, Lane.LEFT, 420);
+        carLanes[4] = new CarLane(difficulty * 2, Lane.RIGHT, 460);
         Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
         logLanes[0] = new LogLane(difficulty, Lane.RIGHT, 70);
@@ -62,10 +62,10 @@ public class FroggerGame {
         for (LogLane logLane : logLanes) logLane.update();
         for (TurtleLane turtleLane : turtleLanes) turtleLane.update();
         if (player.getY() == 60 || player.getY() == 140) //if on a right bound lane
-            player.setX(player.getX()+difficulty); //move frog same speed as log.
+            player.setX(player.getX() + difficulty); //move frog same speed as log.
         else if (player.getY() == 180) //if on a left bound lane
-            player.setX(player.getX()-difficulty); //move frog same speed as log.
-        
+            player.setX(player.getX() - difficulty); //move frog same speed as log.
+
         runChecks();
     }
 
@@ -111,7 +111,7 @@ public class FroggerGame {
             status = DEAD;
             Logger.logUserMessage("Game over.");
         }
-        player = new Frog(320,500); //set player back at spawn point
+        player = new Frog(320, 500); //set player back at spawn point
     }
 
     /**
@@ -160,15 +160,15 @@ public class FroggerGame {
     }
 
     private void runChecks() {
-        if (difficulty==0) { //don't do checks if in god mode.
+        if (difficulty == 0) { //don't do checks if in god mode.
             return;
         }
         double y = player.getY();
-        if (y<=460 && y>=300) { //in car lanes
+        if (y <= 460 && y >= 300) { //in car lanes
             carCheck();
-        } else if(y==100 || y== 220) { //in a turtle lane
+        } else if (y == 100 || y == 220) { //in a turtle lane
             turtleCheck();
-        } else if(y==180 || y== 140 || y==60) { //in a log lane.
+        } else if (y == 180 || y == 140 || y == 60) { //in a log lane.
             logCheck();
         }
 
