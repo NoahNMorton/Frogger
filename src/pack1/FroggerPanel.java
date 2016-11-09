@@ -79,6 +79,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Deprecated
     public void keyPressed(KeyEvent e) {
         //unused
+        System.out.println(game.getPlayer().getY());
 
     }
 
@@ -286,8 +287,21 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     private void reset() {
-        this.game = new FroggerGame();
-        Logger.logCodeMessage("Reset the game.");
+        int difficulty;
+        Logger.logCodeMessage("Asking user for difficulty.");
+        do {
+            String diff = JOptionPane.showInputDialog(null, "What difficulty setting? 1 for easy, 2 for medium, and 3 for hard.");
+            try {
+                difficulty = Integer.parseInt(diff);
+                if (difficulty < 1 || difficulty > 3) {
+                    JOptionPane.showMessageDialog(null, "Invalid difficulty, try again.");
+                } else
+                    break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "I don't understand what you provided. Try again.", "Difficulty error", JOptionPane.ERROR_MESSAGE);
+            }
+        }while (true);
+        this.game = new FroggerGame(difficulty);
+        Logger.logCodeMessage("Reset the game, difficulty is "+difficulty);
     }
-
 }

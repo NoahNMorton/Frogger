@@ -14,7 +14,7 @@ public class FroggerGame {
     private LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
     private int status, lives, startLifeTime;
 
-    public FroggerGame() {
+    public FroggerGame(int difficulty) {
         status = FroggerGame.PLAYING;
         reachedMiddle = false;
         lives = 3;
@@ -30,21 +30,21 @@ public class FroggerGame {
         logLanes = new LogLane[3];
         turtleLanes = new TurtleLane[2];
 
-        carLanes[0] = new CarLane(6, Lane.RIGHT, 300);
-        carLanes[1] = new CarLane(3, Lane.LEFT, 340);
-        carLanes[2] = new CarLane(1, Lane.RIGHT, 380);
-        carLanes[3] = new CarLane(6, Lane.LEFT, 420);
-        carLanes[4] = new CarLane(3, Lane.RIGHT, 460);
+        carLanes[0] = new CarLane(difficulty*2, Lane.RIGHT, 300);
+        carLanes[1] = new CarLane(difficulty*2, Lane.LEFT, 340);
+        carLanes[2] = new CarLane(difficulty, Lane.RIGHT, 380);
+        carLanes[3] = new CarLane(difficulty*2, Lane.LEFT, 420);
+        carLanes[4] = new CarLane(difficulty*2, Lane.RIGHT, 460);
         Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
-        logLanes[0] = new LogLane(2, Lane.RIGHT, 70);
-        logLanes[1] = new LogLane(2, Lane.RIGHT, 140);
-        logLanes[2] = new LogLane(2, Lane.LEFT, 180);
+        logLanes[0] = new LogLane(difficulty, Lane.RIGHT, 70);
+        logLanes[1] = new LogLane(difficulty, Lane.RIGHT, 140);
+        logLanes[2] = new LogLane(difficulty, Lane.LEFT, 180);
         Logger.logOtherMessage("Lanes", "Setup log lanes.");
 
         //turtle lanes ---------------------
-        turtleLanes[0] = new TurtleLane(2, Lane.LEFT, 100);
-        turtleLanes[1] = new TurtleLane(2, Lane.RIGHT, 220);
+        turtleLanes[0] = new TurtleLane(difficulty, Lane.LEFT, 100);
+        turtleLanes[1] = new TurtleLane(difficulty, Lane.RIGHT, 220);
         Logger.logOtherMessage("Lanes", "Setup turtle lanes.");
 
 
@@ -123,7 +123,6 @@ public class FroggerGame {
     }
 
     private void logCheck() {
-        //todo moves player if on log with log, otherwise kills
         for (LogLane logLane : logLanes) {
             ArrayList<FroggerItem> fIOfLogLane = logLane.getFroggerItems();
             for (FroggerItem aFIOfLogLane : fIOfLogLane) {
@@ -154,9 +153,15 @@ public class FroggerGame {
     }
 
     private void runChecks() {
+        double y = player.getY();
         //todo calls correct check methods based on y pos
         //for now, just call carchecks
-        carCheck();
+        if (y<=460 && y>=300) {
+            carCheck();
+        } else if(y<=100 && y>= 200) {
+            //todo the other checks
+        }
+
     }
 
 }
