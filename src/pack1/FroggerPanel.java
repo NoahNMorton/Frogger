@@ -270,6 +270,12 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             g.setColor(Color.black);
             g.drawString("Game Over", 30, 300);
             g.drawString("Press n to restart.", 30, 340);
+        } else if (game.getStatus() == game.PLAYER_WINS) {
+            g.setColor(Color.lightGray);
+            g.fillRect(0, 0, 700, 640); //cover the screen
+            g.setColor(Color.black);
+            g.drawString("You Win!", 30, 300);
+            g.drawString("Press n to restart.", 30, 340);
         }
     }
 

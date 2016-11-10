@@ -11,7 +11,7 @@ public class Log extends FroggerItem {
 
     @Override
     public void updateRectangle() {
-        this.setRect(new Rectangle((int) x+30, (int) y, getWidth()-30, 40));
+        this.setRect(new Rectangle((int) x + 30, (int) y, getWidth() - 30, 40));
     }
 
     /**
