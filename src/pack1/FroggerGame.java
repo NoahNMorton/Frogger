@@ -129,9 +129,7 @@ public class FroggerGame {
             for (FroggerItem aFIOfCarLane : fIOfCarLane) {
                 if (aFIOfCarLane.getRect().intersects(player.getRect())) { //if frog touching car
                     playerDeath();
-                    return;
                 }
-                return;
             }
         }
     }
@@ -150,7 +148,16 @@ public class FroggerGame {
     }
 
     private void turtleCheck() {
-        //todo moves player with non-down turtle, otherwise kills
+        boolean dead = true;
+        for (TurtleLane turtleLane : turtleLanes) {
+            ArrayList<FroggerItem> fIOfTurtleLane = turtleLane.getFroggerItems();
+            for (FroggerItem aFIOfTurtleLane : fIOfTurtleLane) {
+                if (aFIOfTurtleLane.getRect().intersects(player.getRect())) { //if they do intersect, aka on the log
+                    dead = false;
+                }
+            }
+        }
+        if (dead) playerDeath(); //if still marked for death, kill the frog.
     }
 
     private void lilyCheck() {
@@ -172,11 +179,14 @@ public class FroggerGame {
         double y = player.getY();
         if (y <= 460 && y >= 300) { //in car lanes
             carCheck();
-        } else if (y == 100 || y == 220) { //in a turtle lane
+        } else if (y == 220) { //in a turtle lane
             turtleCheck();
         } else if (y == 180 || y == 140 || y == 60) { //in a log lane.
             logCheck();
-        }
+        } /*else if (y==100) { //todo if in a turtle lane, but also the final lane, so call both
+            turtleCheck();
+            lilyCheck();
+        }*/
 
     }
 

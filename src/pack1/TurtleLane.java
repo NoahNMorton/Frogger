@@ -5,7 +5,7 @@ public class TurtleLane extends Lane {
         super(speed, direction, y);
     }
 
-    void update() { //FIXME setup is different for turtles
+    void update() {
         super.update();
         int carType = (int) (Math.random() * 3);
         int length = 0;

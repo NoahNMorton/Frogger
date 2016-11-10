@@ -79,7 +79,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Deprecated
     public void keyPressed(KeyEvent e) {
         //unused
-        System.out.println(game.getPlayer().getY());
     }
 
     @Override
