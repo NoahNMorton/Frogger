@@ -79,6 +79,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     @Deprecated
     public void keyPressed(KeyEvent e) {
         //unused
+        System.out.println(game.getPlayer().getY());
     }
 
     @Override
@@ -111,12 +112,12 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                     break;
                 case 'a':
                     if ((game.getPlayer().getX() - 30) > 0)
-                        game.getPlayer().setX(game.getPlayer().getX() - 40);
+                        game.getPlayer().setX(game.getPlayer().getX() - 20);
                     game.getPlayer().setDirection(Frog.LEFT);
                     break;
                 case 'd':
                     if ((game.getPlayer().getX() + 40) < getWidth() - 30)
-                        game.getPlayer().setX(game.getPlayer().getX() + 40);
+                        game.getPlayer().setX(game.getPlayer().getX() + 20);
                     game.getPlayer().setDirection(Frog.RIGHT);
                     break;
             }

@@ -45,8 +45,8 @@ public class FroggerGame {
         Logger.logOtherMessage("Lanes", "Setup log lanes.");
 
         //turtle lanes ---------------------
-        turtleLanes[0] = new TurtleLane(difficulty, Lane.LEFT, 100);
-        turtleLanes[1] = new TurtleLane(difficulty, Lane.RIGHT, 220);
+        turtleLanes[0] = new TurtleLane(difficulty * 1.3, Lane.LEFT, 100);
+        turtleLanes[1] = new TurtleLane(difficulty * 1.3, Lane.RIGHT, 220);
         Logger.logOtherMessage("Lanes", "Setup turtle lanes.");
 
 
@@ -61,10 +61,16 @@ public class FroggerGame {
         for (CarLane carLane : carLanes) carLane.update();
         for (LogLane logLane : logLanes) logLane.update();
         for (TurtleLane turtleLane : turtleLanes) turtleLane.update();
+        //move the frog when he's on a moving platform
         if (player.getY() == 60 || player.getY() == 140) //if on a right bound lane
             player.setX(player.getX() + difficulty); //move frog same speed as log.
-        else if (player.getY() == 180) //if on a left bound lane
+        else if (player.getY() == 180) //if on a left bound log lane
             player.setX(player.getX() - difficulty); //move frog same speed as log.
+
+        if (player.getY() == 100)  //left bound turtle lane
+            player.setX(player.getX() - (difficulty * 1.3));
+        else if (player.getY() == 220)
+            player.setX(player.getX() + (difficulty * 1.3));
 
         runChecks();
     }
