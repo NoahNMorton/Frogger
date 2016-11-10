@@ -208,7 +208,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 } else if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.CAR_2) {
                     g.drawImage(car2_Right, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
                 } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.CAR_2) {
-                    g.drawImage(car1_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
+                    g.drawImage(car2_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
                 } else if (cl.froggerItems.get(p).getDirection() == Lane.LEFT && cl.froggerItems.get(p).getType() == Car.LIMO) {
                     g.drawImage(limo_Left, (int) cl.froggerItems.get(p).getX(), (int) cl.froggerItems.get(p).getY(), null);
                 } else if (cl.froggerItems.get(p).getDirection() == Lane.RIGHT && cl.froggerItems.get(p).getType() == Car.LIMO) {
