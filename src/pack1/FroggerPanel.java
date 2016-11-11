@@ -98,25 +98,49 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     public void keyTyped(KeyEvent e) {
         if (game.getStatus() != game.DEAD) {
+            double playerX = game.getPlayer().getX();
+            double playerY = game.getPlayer().getY();
+
             switch (e.getKeyChar()) {
-                case 'w':
-                    if ((game.getPlayer().getY() - 40) > 30)
-                        game.getPlayer().setY(game.getPlayer().getY() - 40);
+                case 'w': //todo allow frog to step onto lilypad -help
+                    if ((playerX >= 75 && playerX <= 115) && playerY == 100) { //in front of first lilypad.
+                        game.getPlayer().setY(playerY - 40);
+                        game.getLilyPadses()[0].setFrog(true);
+                        Logger.logUserMessage("Stepped onto a lilypad.");
+                        break;
+                    } else if ((playerX >= 254 && playerX <= 294) && playerY == 100) { //in front of second lilypad.
+                        game.getPlayer().setY(playerY - 40);
+                        game.getLilyPadses()[1].setFrog(true);
+                        Logger.logUserMessage("Stepped onto a lilypad.");
+                        break;
+                    } else if ((playerX >= 433 && playerX <= 473) && playerY == 100) { //in front of third lilypad.
+                        game.getPlayer().setY(playerY - 40);
+                        game.getLilyPadses()[2].setFrog(true);
+                        Logger.logUserMessage("Stepped onto a lilypad.");
+                        break;
+                    } else if ((playerX >= 612 && playerX <= 652) && playerY == 100) { //in front of fourth lilypad.
+                        game.getPlayer().setY(playerY - 40);
+                        game.getLilyPadses()[3].setFrog(true);
+                        Logger.logUserMessage("Stepped onto a lilypad.");
+                        break;
+                    } else if (((playerY - 40) > 30)) //not in front of a lilypad.
+                        game.getPlayer().setY(playerY - 40);
+
                     game.getPlayer().setDirection(Frog.UP);
                     break;
                 case 's':
-                    if ((game.getPlayer().getY() + 40) < getHeight() - 100)
-                        game.getPlayer().setY(game.getPlayer().getY() + 40);
+                    if ((playerY + 40) < getHeight() - 100)
+                        game.getPlayer().setY(playerY + 40);
                     game.getPlayer().setDirection(Frog.DOWN);
                     break;
                 case 'a':
-                    if ((game.getPlayer().getX() - 30) > 0)
-                        game.getPlayer().setX(game.getPlayer().getX() - 20);
+                    if ((playerX - 30) > 0)
+                        game.getPlayer().setX(playerX - 20);
                     game.getPlayer().setDirection(Frog.LEFT);
                     break;
                 case 'd':
-                    if ((game.getPlayer().getX() + 40) < getWidth() - 30)
-                        game.getPlayer().setX(game.getPlayer().getX() + 20);
+                    if ((playerX + 40) < getWidth() - 30)
+                        game.getPlayer().setX(playerX + 20);
                     game.getPlayer().setDirection(Frog.RIGHT);
                     break;
             }

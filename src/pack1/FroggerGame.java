@@ -170,6 +170,7 @@ public class FroggerGame {
         When the player is not on an empty lily pad he/she
         will be pushed back into the log lane.
          */
+
     }
 
     private void runChecks() {
@@ -183,10 +184,10 @@ public class FroggerGame {
             turtleCheck();
         } else if (y == 180 || y == 140 || y == 60) { //in a log lane.
             logCheck();
-        } /*else if (y==100) { //todo if in a turtle lane, but also the final lane, so call both
+        } else if (y==100) { //todo if in a turtle lane, but also the final lane, so call both
             turtleCheck();
             lilyCheck();
-        }*/
+        }
 
     }
 
