@@ -165,8 +165,15 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //lilypads------------------------------
-        for (int i = 75; i <= 615; i += 179)
-            g.drawImage(lilyPad, i, 30, null);
+        int itar = 0;
+        for (int i = 75; i <= 615; i += 179) {
+            if(game.getLilyPadses()[itar].isFrog()) {
+                g.drawImage(lilyPad, i, 30, null);
+                g.drawImage(frogDown,i,30,null);
+            } else
+                g.drawImage(lilyPad, i, 30, null);
+            itar++;
+        }
 
         //text----------------------------------
         g.setColor(Color.RED);
