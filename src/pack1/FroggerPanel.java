@@ -103,7 +103,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             switch (e.getKeyChar()) {
                 case 'w':
                     player.setY(player.getY() - 40);
-                    System.out.println("y after moving is: "+player.getY());
+                    System.out.println("y after moving is: " + player.getY());
                     if (player.getY() == 20) {
                         if (game.lilyCheck()) { //if stepped on a lilypad
                             player.setX(320);
@@ -165,11 +165,11 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //lilypads------------------------------
-        int itar = 0;
+        byte itar = 0; //small variable to keep track of the current lilypad.
         for (int i = 75; i <= 615; i += 179) {
-            if(game.getLilyPadses()[itar].isFrog()) {
+            if (game.getLilyPadses()[itar].isFrog()) {
                 g.drawImage(lilyPad, i, 30, null);
-                g.drawImage(frogDown,i,30,null);
+                g.drawImage(frogDown, i, 30, null);
             } else
                 g.drawImage(lilyPad, i, 30, null);
             itar++;

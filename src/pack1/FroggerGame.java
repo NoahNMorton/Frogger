@@ -73,10 +73,14 @@ public class FroggerGame {
             player.setX(player.getX() + (difficulty * 1.3));
 
         //keep the player on screen at all times
-        if(player.getX()<0)
+        if (player.getX() < 0)
             player.setX(0);
-        if(player.getX()>660)
+        if (player.getX() > 660)
             player.setX(660);
+
+        //win the game if all lilypads are filled
+        if (lilyPadses[0].isFrog() && lilyPadses[1].isFrog() && lilyPadses[2].isFrog() && lilyPadses[3].isFrog())
+            status = PLAYER_WINS;
 
         runChecks();
     }
@@ -167,15 +171,7 @@ public class FroggerGame {
     }
 
     public boolean lilyCheck() {
-        /* todo lilyCheck
-        Processes the games response when the player is in
-        the lane with the lily pads. If the player is on the
-        last lily pad he/she will win. When the players is on
-        a lily pad that is not the last one it will be set to
-        store a frog and teleport the player back to the start.
-        When the player is not on an empty lily pad he/she
-        will be pushed back into the log lane.
-         */
+        //todo lilycheck >prime focus
         return false;
     }
 
@@ -186,7 +182,7 @@ public class FroggerGame {
         double y = player.getY();
         if (y <= 460 && y >= 300) { //in car lanes
             carCheck();
-        } else if (y == 220 || y==100) { //in a turtle lane
+        } else if (y == 220 || y == 100) { //in a turtle lane
             turtleCheck();
         } else if (y == 180 || y == 140 || y == 60) { //in a log lane.
             logCheck();
