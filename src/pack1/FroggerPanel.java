@@ -98,26 +98,35 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
     public void keyTyped(KeyEvent e) {
         if (game.getStatus() != game.DEAD) {
+
+            Frog player = game.getPlayer();
             switch (e.getKeyChar()) {
                 case 'w':
-                    if ((game.getPlayer().getY() - 40) > 30)
-                        game.getPlayer().setY(game.getPlayer().getY() - 40);
-                    game.getPlayer().setDirection(Frog.UP);
+                    player.setY(player.getY() - 40);
+                    System.out.println("y after moving is: "+player.getY());
+                    if (player.getY() == 20) {
+                        if (game.lilyCheck()) { //if stepped on a lilypad
+                            player.setX(320);
+                            player.setY(500);
+                        } else {
+                            player.setY(player.getY() + 40);
+                        }
+                    }
+
+                    player.setDirection(Frog.UP);
                     break;
                 case 's':
-                    if ((game.getPlayer().getY() + 40) < getHeight() - 100)
-                        game.getPlayer().setY(game.getPlayer().getY() + 40);
-                    game.getPlayer().setDirection(Frog.DOWN);
+                    if ((player.getY() + 40) < getHeight() - 100)
+                        player.setY(player.getY() + 40);
+                    player.setDirection(Frog.DOWN);
                     break;
                 case 'a':
-                    if ((game.getPlayer().getX() - 30) > 0)
-                        game.getPlayer().setX(game.getPlayer().getX() - 20);
-                    game.getPlayer().setDirection(Frog.LEFT);
+                    player.setX(player.getX() - 20);
+                    player.setDirection(Frog.LEFT);
                     break;
                 case 'd':
-                    if ((game.getPlayer().getX() + 40) < getWidth() - 30)
-                        game.getPlayer().setX(game.getPlayer().getX() + 20);
-                    game.getPlayer().setDirection(Frog.RIGHT);
+                    player.setX(player.getX() + 20);
+                    player.setDirection(Frog.RIGHT);
                     break;
             }
         } else { //dead
@@ -263,7 +272,13 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 g.drawImage(frogRight, (int) game.getPlayer().getX(), (int) game.getPlayer().getY(), null);
                 break;
         }
-        //draw game over screen --------------------------
+
+        //REFERENCE CODE, FIXME:REMOVE WHEN FINISHED.
+        /*g.setColor(Color.BLACK);
+        for(int q = 20; q<getHeight(); q+=40)
+            g.drawLine(0,q,getWidth(),q);*/
+
+        //draw game over screens --------------------------
         if (game.getStatus() == game.DEAD) {
             g.setColor(Color.lightGray);
             g.fillRect(0, 0, 700, 640); //cover the screen

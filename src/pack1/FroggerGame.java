@@ -72,6 +72,12 @@ public class FroggerGame {
         else if (player.getY() == 220)
             player.setX(player.getX() + (difficulty * 1.3));
 
+        //keep the player on screen at all times
+        if(player.getX()<0)
+            player.setX(0);
+        if(player.getX()>660)
+            player.setX(660);
+
         runChecks();
     }
 
@@ -160,7 +166,7 @@ public class FroggerGame {
         if (dead) playerDeath(); //if still marked for death, kill the frog.
     }
 
-    private void lilyCheck() {
+    public boolean lilyCheck() {
         /* todo lilyCheck
         Processes the games response when the player is in
         the lane with the lily pads. If the player is on the
@@ -170,7 +176,7 @@ public class FroggerGame {
         When the player is not on an empty lily pad he/she
         will be pushed back into the log lane.
          */
-
+        return false;
     }
 
     private void runChecks() {
@@ -180,13 +186,10 @@ public class FroggerGame {
         double y = player.getY();
         if (y <= 460 && y >= 300) { //in car lanes
             carCheck();
-        } else if (y == 220) { //in a turtle lane
+        } else if (y == 220 || y==100) { //in a turtle lane
             turtleCheck();
         } else if (y == 180 || y == 140 || y == 60) { //in a log lane.
             logCheck();
-        } else if (y==100) { //todo if in a turtle lane, but also the final lane, so call both
-            turtleCheck();
-            lilyCheck();
         }
 
     }
