@@ -97,7 +97,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyTyped(KeyEvent e) {
-        if (game.getStatus() != game.DEAD && game.getStatus() != FroggerGame.PLAYER_WINS) {
+        if (game.getStatus() == game.PLAYING) {
 
             Frog player = game.getPlayer();
             switch (e.getKeyChar()) {
@@ -108,6 +108,8 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                             player.setX(320);
                             player.setY(500);
                             Logger.logUserMessage("Stepped onto a lilypad.");
+                            FroggerGame.newLife = true;
+                            game.setReachedMiddle(false); //set spawn back to the start.
                         } else {
                             player.setY(player.getY() + 40);
                         }
@@ -182,18 +184,20 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.drawString("Time Left:", 300, getHeight() - 15);
 
         //time left----------------
-        int timeLeft = (int) game.getTimeLeft();
+        double timeLeft = game.getTimeLeft();
         if (timeLeft <= 0) //out of time, so kill player
             game.playerDeath();
 
-        if (timeLeft >= 40) //change colour of bar based on time left
+        if (timeLeft >= 3*(FroggerGame.MAX_LIFE_TIME/4)) //change colour of bar based on time left
             g.setColor(Color.green);
-        else if (timeLeft >= 25)
-            g.setColor(Color.orange);
+        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME/2))
+            g.setColor(Color.yellow);
+        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME/4))
+            g.setColor(new Color(225,0,0));
         else
-            g.setColor(Color.RED);
+            g.setColor(new Color(125,0,0));
 
-        g.fillRect(500, getHeight() - 40, (timeLeft * 2) + 70, 20); //draw timer based on time left
+        g.fillRect(500, getHeight() - 40, (int)((timeLeft/FroggerGame.MAX_LIFE_TIME)*170), 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
         //lives ----------------------
@@ -283,11 +287,6 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                 break;
         }
 
-        //REFERENCE CODE, FIXME:REMOVE WHEN FINISHED.
-        /*g.setColor(Color.BLACK);
-        for(int q = 20; q<getHeight(); q+=40)
-            g.drawLine(0,q,getWidth(),q);*/
-
         //draw game over screens --------------------------
         if (game.getStatus() == game.DEAD) {
             g.setColor(Color.lightGray);
@@ -304,7 +303,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    void update() {
+    private void update() {
         game.update();
     }
 

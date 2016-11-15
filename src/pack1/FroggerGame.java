@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class FroggerGame {
 
-    public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 50;
+    public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2;
+    public static int MAX_LIFE_TIME = 50;
     public static boolean newLife = false;
     public static long startLifeTime = 0, currentTime;
     private boolean reachedMiddle;
@@ -20,8 +21,20 @@ public class FroggerGame {
         status = FroggerGame.PLAYING;
         reachedMiddle = false;
         lives = 3;
+        //Difficulty -----------
         this.difficulty = difficulty;
         if (difficulty == 0) difficulty = 1; //so stuff still moves in god mode.
+        switch (difficulty) {
+            case 1:
+                MAX_LIFE_TIME = 50;
+                break;
+            case 2:
+                MAX_LIFE_TIME = 30;
+                break;
+            case 3:
+                MAX_LIFE_TIME = 20;
+        }
+        //player -------
         player = new Frog(320, 500);
         //lilly pads------------------------
         lilyPadses = new LilyPad[4];
@@ -50,10 +63,6 @@ public class FroggerGame {
         turtleLanes[0] = new TurtleLane(difficulty * 1.3, Lane.LEFT, 100);
         turtleLanes[1] = new TurtleLane(difficulty * 1.3, Lane.RIGHT, 220);
         Logger.logOtherMessage("Lanes", "Setup turtle lanes.");
-
-
-        //todo Sets the lifeTimer
-
 
         for (int t = 0; t < 1000; t++) //calls update on all lanes before loading game
             update();
@@ -84,7 +93,7 @@ public class FroggerGame {
         if (lilyPadses[0].isFrog() && lilyPadses[1].isFrog() && lilyPadses[2].isFrog() && lilyPadses[3].isFrog())
             status = PLAYER_WINS;
 
-        if (player.getY() == 260) {
+        if (player.getY() == 260 && !reachedMiddle) { //if reached middle of the playfield
             reachedMiddle = true;
             Logger.logUserMessage("Reached the middle.");
         }
@@ -125,7 +134,8 @@ public class FroggerGame {
         int transversedTime = (int) ((currentTime - startLifeTime) / 1000000000);
         if (newLife) {
             newLife = false;
-            return MAX_LIFE_TIME;
+            startLifeTime = currentTime;
+            return getTimeLeft();
         } else
             return (int) (MAX_LIFE_TIME - transversedTime);
     }
