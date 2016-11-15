@@ -9,10 +9,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+@SuppressWarnings({"AccessStaticViaInstance", "WeakerAccess"})
 public class FroggerPanel extends JPanel implements KeyListener, Runnable {
 
-    //BufferedImage buffer;
-    int updatesPerSecond;
     private BufferedImage car1_Left, car1_Right, car2_Left, car2_Right, limo_Left, limo_Right, semi_Left, semi_Right, frogUp, frogDown,
             frogLeft, frogRight, hsTurtle, hmTurtle, hlTurtle, sTurtle, mTurtle, lTurtle, sLog, mLog, lLog, lilyPad, frogLife;
     private FroggerGame game;
@@ -188,16 +187,16 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         if (timeLeft <= 0) //out of time, so kill player
             game.playerDeath();
 
-        if (timeLeft >= 3*(FroggerGame.MAX_LIFE_TIME/4)) //change colour of bar based on time left
+        if (timeLeft >= 3 * (FroggerGame.MAX_LIFE_TIME / 4)) //change colour of bar based on time left
             g.setColor(Color.green);
-        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME/2))
+        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME / 2))
             g.setColor(Color.yellow);
-        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME/4))
-            g.setColor(new Color(225,0,0));
+        else if (timeLeft >= (FroggerGame.MAX_LIFE_TIME / 4))
+            g.setColor(new Color(225, 0, 0));
         else
-            g.setColor(new Color(125,0,0));
+            g.setColor(new Color(125, 0, 0));
 
-        g.fillRect(500, getHeight() - 40, (int)((timeLeft/FroggerGame.MAX_LIFE_TIME)*170), 20); //draw timer based on time left
+        g.fillRect(500, getHeight() - 40, (int) ((timeLeft / FroggerGame.MAX_LIFE_TIME) * 170), 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
         //lives ----------------------

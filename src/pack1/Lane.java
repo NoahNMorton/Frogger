@@ -3,6 +3,7 @@ package pack1;
 
 import java.util.ArrayList;
 
+@SuppressWarnings({"CanBeFinal", "WeakerAccess"})
 public class Lane {
 
     public static final int LEFT = 0, RIGHT = 1;

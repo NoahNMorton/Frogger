@@ -9,6 +9,7 @@ import java.awt.*;
  *         Part of Project: Frogger
  */
 
+@SuppressWarnings("WeakerAccess")
 public class FroggerFrame extends JFrame {
 
     public FroggerFrame() {
@@ -18,7 +19,7 @@ public class FroggerFrame extends JFrame {
         // Sets the close button to exit the program
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // makes the window not able to be resized
+        // makes the window not able to be re-sized
         setResizable(false);
         // creates the window
         pack();

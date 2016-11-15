@@ -3,12 +3,13 @@ package pack1;
 
 import java.util.ArrayList;
 
+@SuppressWarnings({"SameParameterValue", "CanBeFinal", "WeakerAccess"})
 public class FroggerGame {
 
     public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2;
     public static int MAX_LIFE_TIME = 50;
     public static boolean newLife = false;
-    public static long startLifeTime = 0, currentTime;
+    public static long startLifeTime = 0;
     private boolean reachedMiddle;
     private Frog player;
     private LogLane[] logLanes;
@@ -137,7 +138,7 @@ public class FroggerGame {
             startLifeTime = currentTime;
             return getTimeLeft();
         } else
-            return (int) (MAX_LIFE_TIME - transversedTime);
+            return MAX_LIFE_TIME - transversedTime;
     }
 
     /**
@@ -163,6 +164,7 @@ public class FroggerGame {
     private void carCheck() {
         for (CarLane carLane : carLanes) {
             ArrayList<FroggerItem> fIOfCarLane = carLane.getFroggerItems();
+            //noinspection Convert2streamapi
             for (FroggerItem aFIOfCarLane : fIOfCarLane) {
                 if (aFIOfCarLane.getRect().intersects(player.getRect())) { //if frog touching car
                     playerDeath();
@@ -213,10 +215,6 @@ public class FroggerGame {
             return true;
         } else
             return false;
-    }
-
-    public boolean isReachedMiddle() {
-        return reachedMiddle;
     }
 
     public void setReachedMiddle(boolean reachedMiddle) {

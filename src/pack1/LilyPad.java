@@ -1,10 +1,10 @@
 package pack1;
 
 
+@SuppressWarnings("SameParameterValue")
 public class LilyPad extends FroggerItem {
 
-    int x, y;
-    boolean frog;
+    private boolean frog;
 
     public LilyPad(double x, double y) {
         super(0, 0, 0, x, y);

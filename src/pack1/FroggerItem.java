@@ -3,6 +3,7 @@ package pack1;
 
 import java.awt.*;
 
+@SuppressWarnings({"CanBeFinal", "WeakerAccess"})
 public abstract class FroggerItem {
 
     public static final int LEFT = 2, RIGHT = 3;
