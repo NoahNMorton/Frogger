@@ -82,6 +82,9 @@ public class FroggerGame {
         if (lilyPadses[0].isFrog() && lilyPadses[1].isFrog() && lilyPadses[2].isFrog() && lilyPadses[3].isFrog())
             status = PLAYER_WINS;
 
+        if(player.getY()==260)
+            reachedMiddle=true;
+
         runChecks();
     }
 
@@ -127,7 +130,10 @@ public class FroggerGame {
             status = DEAD;
             Logger.logUserMessage("Game over.");
         }
-        player = new Frog(320, 500); //set player back at spawn point
+        if (reachedMiddle)
+            player = new Frog(320, 260); //set player back to middle
+        else
+            player = new Frog(320, 500); //set player back at spawn point
     }
 
     /**
@@ -186,6 +192,14 @@ public class FroggerGame {
             return true;
         } else
             return false;
+    }
+
+    public boolean isReachedMiddle() {
+        return reachedMiddle;
+    }
+
+    public void setReachedMiddle(boolean reachedMiddle) {
+        this.reachedMiddle = reachedMiddle;
     }
 
     private void runChecks() {
