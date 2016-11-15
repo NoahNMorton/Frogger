@@ -171,8 +171,21 @@ public class FroggerGame {
     }
 
     public boolean lilyCheck() {
-        //todo lilycheck >prime focus
-        return false;
+        double playerX = player.getX();
+        if (playerX >= 60 && playerX <= 130) {
+            lilyPadses[0].setFrog(true);
+            return true;
+        } else if (playerX >= 240 && playerX <= 310) {
+            lilyPadses[1].setFrog(true);
+            return true;
+        } else if (playerX >= 420 && playerX <= 490) {
+            lilyPadses[2].setFrog(true);
+            return true;
+        } else if (playerX >= 600 && playerX <= 670) {
+            lilyPadses[3].setFrog(true);
+            return true;
+        } else
+            return false;
     }
 
     private void runChecks() {
