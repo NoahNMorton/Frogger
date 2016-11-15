@@ -97,17 +97,17 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
     }
 
     public void keyTyped(KeyEvent e) {
-        if (game.getStatus() != game.DEAD) {
+        if (game.getStatus() != game.DEAD && game.getStatus() != FroggerGame.PLAYER_WINS) {
 
             Frog player = game.getPlayer();
             switch (e.getKeyChar()) {
                 case 'w':
                     player.setY(player.getY() - 40);
-                    System.out.println("y after moving is: " + player.getY());
                     if (player.getY() == 20) {
                         if (game.lilyCheck()) { //if stepped on a lilypad
                             player.setX(320);
                             player.setY(500);
+                            Logger.logUserMessage("Stepped onto a lilypad.");
                         } else {
                             player.setY(player.getY() + 40);
                         }
@@ -129,7 +129,7 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
                     player.setDirection(Frog.RIGHT);
                     break;
             }
-        } else { //dead
+        } else { //dead or won
             if (e.getKeyChar() == 'n') {
                 Logger.logUserMessage("Started a new game.");
                 reset();
@@ -182,15 +182,18 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
         g.drawString("Time Left:", 300, getHeight() - 15);
 
         //time left----------------
-        int i = game.getTimeLeft();
-        if (i >= 60) //change colour of bar based on time left
+        int timeLeft = (int) game.getTimeLeft();
+        if (timeLeft <= 0) //out of time, so kill player
+            game.playerDeath();
+
+        if (timeLeft >= 40) //change colour of bar based on time left
             g.setColor(Color.green);
-        else if (i >= 40)
+        else if (timeLeft >= 25)
             g.setColor(Color.orange);
         else
             g.setColor(Color.RED);
 
-        g.fillRect(500, getHeight() - 40, (i * 2) + 10, 20); //draw timer based on time left
+        g.fillRect(500, getHeight() - 40, (timeLeft * 2) + 70, 20); //draw timer based on time left
         g.drawRect(500, getHeight() - 40, 170, 20); //timer outline
 
         //lives ----------------------

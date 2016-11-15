@@ -5,14 +5,16 @@ import java.util.ArrayList;
 
 public class FroggerGame {
 
-    public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 80;
+    public static final int PLAYING = 0, DEAD = 1, PLAYER_WINS = 2, MAX_LIFE_TIME = 50;
+    public static boolean newLife = false;
+    public static long startLifeTime = 0, currentTime;
     private boolean reachedMiddle;
     private Frog player;
     private LogLane[] logLanes;
     private CarLane[] carLanes;
     private TurtleLane[] turtleLanes;
     private LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
-    private int status, lives, startLifeTime, difficulty;
+    private int status, lives, difficulty;
 
     public FroggerGame(int difficulty) {
         status = FroggerGame.PLAYING;
@@ -82,8 +84,10 @@ public class FroggerGame {
         if (lilyPadses[0].isFrog() && lilyPadses[1].isFrog() && lilyPadses[2].isFrog() && lilyPadses[3].isFrog())
             status = PLAYER_WINS;
 
-        if(player.getY()==260)
-            reachedMiddle=true;
+        if (player.getY() == 260) {
+            reachedMiddle = true;
+            Logger.logUserMessage("Reached the middle.");
+        }
 
         runChecks();
     }
@@ -116,24 +120,31 @@ public class FroggerGame {
         return turtleLanes;
     }
 
-    public int getTimeLeft() {
-        return MAX_LIFE_TIME - startLifeTime;
+    public long getTimeLeft() {
+        long currentTime = System.nanoTime();
+        int transversedTime = (int) ((currentTime - startLifeTime) / 1000000000);
+        if (newLife) {
+            newLife = false;
+            return MAX_LIFE_TIME;
+        } else
+            return (int) (MAX_LIFE_TIME - transversedTime);
     }
 
     /**
      * Preforms actions to "kill the player", such as removing a life, re-spawning, etc
      */
-    private void playerDeath() {
+    public void playerDeath() {
         Logger.logUserMessage("User died.");
         lives--;
         if (lives == 0) { //if game over
             status = DEAD;
             Logger.logUserMessage("Game over.");
         }
-        if (reachedMiddle)
+        if (reachedMiddle) {
             player = new Frog(320, 260); //set player back to middle
-        else
+        } else {
             player = new Frog(320, 500); //set player back at spawn point
+        }
     }
 
     /**

@@ -8,6 +8,8 @@ public class Frog extends FroggerItem {
 
     public Frog(double x, double y) {
         super(40, 0, UP, x, y);
+        FroggerGame.startLifeTime = System.nanoTime();
+        FroggerGame.newLife = true;
         Logger.logCodeMessage("Set up frog.");
     }
 
