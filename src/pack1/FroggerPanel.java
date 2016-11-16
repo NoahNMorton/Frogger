@@ -257,16 +257,31 @@ public class FroggerPanel extends JPanel implements KeyListener, Runnable {
             }
         }
         //turtles -------------------------
-        for (TurtleLane lL : game.getTurtleLanes()) //all log lanes
+        for (TurtleLane turtleLane : game.getTurtleLanes()) //all turtle lanes
         {
-            for (int p = 0; p < lL.froggerItems.size(); p++) //each log in that lane
+            for (int p = 0; p < turtleLane.froggerItems.size(); p++) //each turtle in that lane
             {
-                if (lL.froggerItems.get(p).getType() == Turtle.ONE_TURTLE) {
-                    g.drawImage(sTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
-                } else if (lL.froggerItems.get(p).getType() == Turtle.TWO_TURTLE) {
-                    g.drawImage(mTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
-                } else if (lL.froggerItems.get(p).getType() == Turtle.THREE_TURTLE) {
-                    g.drawImage(lTurtle, (int) lL.froggerItems.get(p).getX(), (int) lL.froggerItems.get(p).getY(), null);
+                if (turtleLane.froggerItems.get(p).getType() == Turtle.ONE_TURTLE) {
+                    Turtle temp = (Turtle) (turtleLane.froggerItems.get(p));
+                    if (temp.getMode() == Turtle.UP || temp.getMode() == Turtle.ALWAYS_UP) {
+                        g.drawImage(sTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    } else if (temp.getMode() == Turtle.HALF_DOWN || temp.getMode() == Turtle.HALF_UP) {
+                        g.drawImage(hsTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    }
+                } else if (turtleLane.froggerItems.get(p).getType() == Turtle.TWO_TURTLE) {
+                    Turtle temp = (Turtle) (turtleLane.froggerItems.get(p));
+                    if (temp.getMode() == Turtle.UP || temp.getMode() == Turtle.ALWAYS_UP) {
+                        g.drawImage(mTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    } else if (temp.getMode() == Turtle.HALF_DOWN || temp.getMode() == Turtle.HALF_UP) {
+                        g.drawImage(hmTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    }
+                } else if (turtleLane.froggerItems.get(p).getType() == Turtle.THREE_TURTLE) {
+                    Turtle temp = (Turtle) (turtleLane.froggerItems.get(p));
+                    if (temp.getMode() == Turtle.UP || temp.getMode() == Turtle.ALWAYS_UP) {
+                        g.drawImage(lTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    } else if (temp.getMode() == Turtle.HALF_DOWN || temp.getMode() == Turtle.HALF_UP) {
+                        g.drawImage(hlTurtle, (int) turtleLane.froggerItems.get(p).getX(), (int) turtleLane.froggerItems.get(p).getY(), null);
+                    }
                 }
             }
         }

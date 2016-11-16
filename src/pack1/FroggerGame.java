@@ -10,13 +10,14 @@ public class FroggerGame {
     public static int MAX_LIFE_TIME = 50;
     public static boolean newLife = false;
     public static long startLifeTime = 0;
+    public static int difficulty;
     private boolean reachedMiddle;
     private Frog player;
     private LogLane[] logLanes;
     private CarLane[] carLanes;
     private TurtleLane[] turtleLanes;
     private LilyPad[] lilyPadses; //I'm leaving it like that. It's required. #smeagle
-    private int status, lives, difficulty;
+    private int status, lives;
 
     public FroggerGame(int difficulty) {
         status = FroggerGame.PLAYING;
@@ -49,9 +50,9 @@ public class FroggerGame {
         turtleLanes = new TurtleLane[2];
 
         carLanes[0] = new CarLane(difficulty * 2, Lane.RIGHT, 300); //speed is based on the difficulty.
-        carLanes[1] = new CarLane(difficulty * 2, Lane.LEFT, 340);
-        carLanes[2] = new CarLane(difficulty, Lane.RIGHT, 380);
-        carLanes[3] = new CarLane(difficulty * 2, Lane.LEFT, 420);
+        carLanes[1] = new CarLane(difficulty * 1.5, Lane.LEFT, 340);
+        carLanes[2] = new CarLane((double) difficulty * 0.7, Lane.RIGHT, 380);
+        carLanes[3] = new CarLane(difficulty, Lane.LEFT, 420);
         carLanes[4] = new CarLane(difficulty * 2, Lane.RIGHT, 460);
         Logger.logOtherMessage("Lanes", "Setup car lanes.");
 
@@ -191,7 +192,8 @@ public class FroggerGame {
         for (TurtleLane turtleLane : turtleLanes) {
             ArrayList<FroggerItem> fIOfTurtleLane = turtleLane.getFroggerItems();
             for (FroggerItem aFIOfTurtleLane : fIOfTurtleLane) {
-                if (aFIOfTurtleLane.getRect().intersects(player.getRect())) { //if they do intersect, aka on the log
+                Turtle temp = (Turtle) aFIOfTurtleLane;
+                if (temp.getRect().intersects(player.getRect()) && temp.getMode() != Turtle.DOWN) { //if they do intersect, aka on the turtle, and turtle is not down
                     dead = false;
                 }
             }
